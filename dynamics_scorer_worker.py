@@ -46,7 +46,7 @@ import traceback
 
 import numpy as np
 
-sys.path.insert(0, "/project_data/held/vxiao/Bimanual_Manipulation_Project/dsrl-scan-object")
+sys.path.insert(0, "/data/vxiao/bimanual_manipulation/dsrl-scan-object")
 from reward import build_svm_obs_batched, load_dynamics_model, load_svm_reward_model, predict_tracks_batched  # noqa: E402
 
 

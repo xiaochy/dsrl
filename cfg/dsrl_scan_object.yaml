@@ -12,8 +12,8 @@ name: scan_object_dsrl_${now:%Y-%m-%d}_${now:%H-%M-%S}_${seed}
 logdir: ${log_dir}/scan_object-dsrl/${name}
 log_dir: ./logs
 
-gap_ckpt_path: "/project_data/held/vxiao/Bimanual_Manipulation_Project/GAP-tte-flattenmlp-concatdit-actionrope/data/outputs/2026.09.13/17.24.29_GAP_scan_object_actionrope-baseline/checkpoints/200.ckpt"
-dynamics_ckpt_path: "/project_data/held/vxiao/Bimanual_Manipulation_Project/dynamics-model-rollout-worldmodel/data/outputs/2026.09.28/19.53.05_GAP_scan_object_rollout-worldmodel/checkpoints/200.ckpt"
+gap_ckpt_path: "/data/vxiao/bimanual_manipulation/GAP-tte-flattenmlp-concatdit-actionrope/data/outputs/2026.09.13/17.24.29_GAP_scan_object_actionrope-baseline/checkpoints/200.ckpt"
+dynamics_ckpt_path: "/data/vxiao/bimanual_manipulation/dynamics-model-rollout-worldmodel/data/outputs/2026.09.28/19.53.05_GAP_scan_object_rollout-worldmodel/checkpoints/200.ckpt"
 task_config: demo_clean_depth  # must have collect_wrist_camera + depth, see
                                 # GAP-tte-.../task_config_templates/demo_clean_depth.yml
 

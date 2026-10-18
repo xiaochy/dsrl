@@ -6,7 +6,7 @@
 #SBATCH --cpus-per-task=10
 #SBATCH --mem=60G
 #SBATCH --time=12:00:00
-#SBATCH --output=/project_data/held/vxiao/Bimanual_Manipulation_Project/dsrl-scan-object/outputs/dsrl_train_continue_10k-%j.out
+#SBATCH --output=/data/vxiao/bimanual_manipulation/dsrl-scan-object/outputs/dsrl_train_continue_10k-%j.out
 
 # Continues the 2000-step exploratory run (job 4028647,
 # logs/scan_object-dsrl/scan_object_explore_2k/checkpoint/final.zip) up to
@@ -28,15 +28,15 @@ set -o pipefail
 source /project_data/held/vxiao/app/anaconda3/etc/profile.d/conda.sh
 conda activate RoboTwin
 
-cd /project_data/held/vxiao/Bimanual_Manipulation_Project/RoboTwin
+cd /data/vxiao/bimanual_manipulation/RoboTwin
 
-RESUME_CKPT=/project_data/held/vxiao/Bimanual_Manipulation_Project/dsrl-scan-object/logs/scan_object-dsrl/scan_object_explore_2k/checkpoint/final.zip
+RESUME_CKPT=/data/vxiao/bimanual_manipulation/dsrl-scan-object/logs/scan_object-dsrl/scan_object_explore_2k/checkpoint/final.zip
 
 DSRL_RESUME_FROM="$RESUME_CKPT" DSRL_TOTAL_TIMESTEPS=8000 DSRL_LEARNING_STARTS=1 \
     DSRL_LOG_FREQ=10 DSRL_EVAL_FREQ=500 DSRL_EVAL_EPISODES=3 \
-    python3 /project_data/held/vxiao/Bimanual_Manipulation_Project/dsrl-scan-object/train_dsrl_scan_object.py \
+    python3 /data/vxiao/bimanual_manipulation/dsrl-scan-object/train_dsrl_scan_object.py \
     use_wandb=False env.max_episode_steps=500 save_model_interval=1000 save_replay_buffer=true \
     name=scan_object_explore_10k_continued \
-    log_dir=/project_data/held/vxiao/Bimanual_Manipulation_Project/dsrl-scan-object/logs
+    log_dir=/data/vxiao/bimanual_manipulation/dsrl-scan-object/logs
 rc=$?
 echo "=== train_dsrl_scan_object.py rc=$rc ==="

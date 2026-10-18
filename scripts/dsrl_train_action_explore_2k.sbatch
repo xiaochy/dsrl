@@ -6,7 +6,7 @@
 #SBATCH --cpus-per-task=10
 #SBATCH --mem=60G
 #SBATCH --time=04:00:00
-#SBATCH --output=/project_data/held/vxiao/Bimanual_Manipulation_Project/dsrl-scan-object/outputs/dsrl_train_action_explore_2k-%j.out
+#SBATCH --output=/data/vxiao/bimanual_manipulation/dsrl-scan-object/outputs/dsrl_train_action_explore_2k-%j.out
 
 # Cautious first step for the NEW action-SVM reward (DSRL_REWARD_SOURCE=
 # action, no dynamics model -- see env.py's DSRLScanObjectEnv docstring):
@@ -29,13 +29,13 @@ set -o pipefail
 source /project_data/held/vxiao/app/anaconda3/etc/profile.d/conda.sh
 conda activate RoboTwin
 
-cd /project_data/held/vxiao/Bimanual_Manipulation_Project/RoboTwin
+cd /data/vxiao/bimanual_manipulation/RoboTwin
 
 DSRL_REWARD_SOURCE=action DSRL_TOTAL_TIMESTEPS=2000 DSRL_LEARNING_STARTS=1 \
     DSRL_LOG_FREQ=10 DSRL_EVAL_FREQ=200 DSRL_EVAL_EPISODES=3 \
-    python3 /project_data/held/vxiao/Bimanual_Manipulation_Project/dsrl-scan-object/train_dsrl_scan_object.py \
+    python3 /data/vxiao/bimanual_manipulation/dsrl-scan-object/train_dsrl_scan_object.py \
     use_wandb=False env.max_episode_steps=500 \
     name=scan_object_action_explore_2k \
-    log_dir=/project_data/held/vxiao/Bimanual_Manipulation_Project/dsrl-scan-object/logs
+    log_dir=/data/vxiao/bimanual_manipulation/dsrl-scan-object/logs
 rc=$?
 echo "=== train_dsrl_scan_object.py rc=$rc ==="

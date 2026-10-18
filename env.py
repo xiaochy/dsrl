@@ -47,8 +47,8 @@ import numpy as np
 import torch
 import yaml
 
-GAP_DIR = "/project_data/held/vxiao/Bimanual_Manipulation_Project/GAP-tte-flattenmlp-concatdit-actionrope"
-ROBOTWIN_ROOT = "/project_data/held/vxiao/Bimanual_Manipulation_Project/RoboTwin"
+GAP_DIR = "/data/vxiao/bimanual_manipulation/GAP-tte-flattenmlp-concatdit-actionrope"
+ROBOTWIN_ROOT = "/data/vxiao/bimanual_manipulation/RoboTwin"
 
 sys.path.insert(0, os.path.dirname(__file__))
 from gap_base_policy import GAPBasePolicyWrapper  # noqa: E402

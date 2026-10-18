@@ -6,7 +6,7 @@
 #SBATCH --cpus-per-task=10
 #SBATCH --mem=60G
 #SBATCH --time=02:00:00
-#SBATCH --output=/project_data/held/vxiao/Bimanual_Manipulation_Project/dsrl-scan-object/outputs/dsrl_stochastic_eval_check-%j.out
+#SBATCH --output=/data/vxiao/bimanual_manipulation/dsrl-scan-object/outputs/dsrl_stochastic_eval_check-%j.out
 
 # Tests whether DeterministicEvalCallback's deterministic=True (the
 # actor's MEAN noise, std~0.49, zero sampling entropy -- confirmed via a
@@ -24,14 +24,14 @@ set -o pipefail
 source /project_data/held/vxiao/app/anaconda3/etc/profile.d/conda.sh
 conda activate RoboTwin
 
-cd /project_data/held/vxiao/Bimanual_Manipulation_Project/RoboTwin
+cd /data/vxiao/bimanual_manipulation/RoboTwin
 
 DSRL_REWARD_SOURCE=track DSRL_INIT_ROLLOUT_STEPS=0 DSRL_TOTAL_TIMESTEPS=1 \
     DSRL_LEARNING_STARTS=1 DSRL_EVAL_FREQ=100000 DSRL_EVAL_EPISODES=30 \
     DSRL_EVAL_DETERMINISTIC=0 \
-    python3 /project_data/held/vxiao/Bimanual_Manipulation_Project/dsrl-scan-object/train_dsrl_scan_object.py \
+    python3 /data/vxiao/bimanual_manipulation/dsrl-scan-object/train_dsrl_scan_object.py \
     use_wandb=False env.max_episode_steps=500 train.action_magnitude=1.5 \
     name=scan_object_stochastic_eval_check \
-    log_dir=/project_data/held/vxiao/Bimanual_Manipulation_Project/dsrl-scan-object/logs
+    log_dir=/data/vxiao/bimanual_manipulation/dsrl-scan-object/logs
 rc=$?
 echo "=== train_dsrl_scan_object.py rc=$rc deterministic=False ==="

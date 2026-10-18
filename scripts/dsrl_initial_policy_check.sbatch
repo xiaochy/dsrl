@@ -6,7 +6,7 @@
 #SBATCH --cpus-per-task=10
 #SBATCH --mem=60G
 #SBATCH --time=02:00:00
-#SBATCH --output=/project_data/held/vxiao/Bimanual_Manipulation_Project/dsrl-scan-object/outputs/dsrl_initial_policy_check-%j.out
+#SBATCH --output=/data/vxiao/bimanual_manipulation/dsrl-scan-object/outputs/dsrl_initial_policy_check-%j.out
 
 # Standalone check: does a FRESH, completely untrained SAC actor's noise
 # (fed through the real, frozen GAP policy) give a success rate anywhere
@@ -25,13 +25,13 @@ set -o pipefail
 source /project_data/held/vxiao/app/anaconda3/etc/profile.d/conda.sh
 conda activate RoboTwin
 
-cd /project_data/held/vxiao/Bimanual_Manipulation_Project/RoboTwin
+cd /data/vxiao/bimanual_manipulation/RoboTwin
 
 DSRL_REWARD_SOURCE=track DSRL_INIT_ROLLOUT_STEPS=0 DSRL_TOTAL_TIMESTEPS=1 \
     DSRL_LEARNING_STARTS=1 DSRL_EVAL_FREQ=100000 DSRL_EVAL_EPISODES=30 \
-    python3 /project_data/held/vxiao/Bimanual_Manipulation_Project/dsrl-scan-object/train_dsrl_scan_object.py \
+    python3 /data/vxiao/bimanual_manipulation/dsrl-scan-object/train_dsrl_scan_object.py \
     use_wandb=False env.max_episode_steps=500 \
     name=scan_object_initial_policy_check \
-    log_dir=/project_data/held/vxiao/Bimanual_Manipulation_Project/dsrl-scan-object/logs
+    log_dir=/data/vxiao/bimanual_manipulation/dsrl-scan-object/logs
 rc=$?
 echo "=== train_dsrl_scan_object.py rc=$rc ==="

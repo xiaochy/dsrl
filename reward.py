@@ -31,18 +31,18 @@ from typing import Dict, Optional
 import numpy as np
 import torch
 
-sys.path.insert(0, "/project_data/held/vxiao/Bimanual_Manipulation_Project/dynamics-model-rollout-worldmodel")
-sys.path.insert(0, "/project_data/held/vxiao/Bimanual_Manipulation_Project/dynamics-model-rollout-worldmodel/scripts")
+sys.path.insert(0, "/data/vxiao/bimanual_manipulation/dynamics-model-rollout-worldmodel")
+sys.path.insert(0, "/data/vxiao/bimanual_manipulation/dynamics-model-rollout-worldmodel/scripts")
 # SVM-reference's remote repo was updated 2026-10-13 (renamed mv_svm -> svm,
 # refactored model.py/preprocess.py/reward_model.py, added MVActionSVMReward)
 # -- import the live package, not the stale mirrored copy under
 # checkpoints/mv-track-svm-scan-object/mv_svm/ left over from the first
 # download, so both track and action models load through the same, current
 # code.
-sys.path.insert(0, "/project_data/held/vxiao/Bimanual_Manipulation_Project/SVM-reference")
+sys.path.insert(0, "/data/vxiao/bimanual_manipulation/SVM-reference")
 
 CAMERAS = ("head", "left_wrist", "right_wrist")
-ACTION_SVM_CKPT_DIR = "/project_data/held/vxiao/Bimanual_Manipulation_Project/SVM-reference/checkpoints/mv-action-svm-scan-object"
+ACTION_SVM_CKPT_DIR = "/data/vxiao/bimanual_manipulation/SVM-reference/checkpoints/mv-action-svm-scan-object"
 
 
 def load_dynamics_model(ckpt_path: str, device: str = "cuda"):
@@ -61,7 +61,7 @@ def load_svm_reward_model(device: str = "cuda", dino=None):
     swap for MVTrackSVMReward.from_pretrained('Mercury007/mv-track-svm-scan-object')
     if that local copy ever goes stale."""
     from svm import MVTrackSVMReward  # noqa: E402
-    ckpt_dir = "/project_data/held/vxiao/Bimanual_Manipulation_Project/SVM-reference/checkpoints/mv-track-svm-scan-object"
+    ckpt_dir = "/data/vxiao/bimanual_manipulation/SVM-reference/checkpoints/mv-track-svm-scan-object"
     return MVTrackSVMReward(ckpt_dir, device=device, dino=dino)
 
 

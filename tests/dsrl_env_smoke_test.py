@@ -12,15 +12,15 @@ import time
 
 import numpy as np
 
-sys.path.insert(0, "/project_data/held/vxiao/Bimanual_Manipulation_Project/dsrl-scan-object")
+sys.path.insert(0, "/data/vxiao/bimanual_manipulation/dsrl-scan-object")
 from env import DSRLScanObjectEnv  # noqa: E402
 
 GAP_CKPT = (
-    "/project_data/held/vxiao/Bimanual_Manipulation_Project/GAP-tte-flattenmlp-concatdit-actionrope/"
+    "/data/vxiao/bimanual_manipulation/GAP-tte-flattenmlp-concatdit-actionrope/"
     "data/outputs/2026.09.13/17.24.29_GAP_scan_object_actionrope-baseline/checkpoints/200.ckpt"
 )
 DYNAMICS_CKPT = (
-    "/project_data/held/vxiao/Bimanual_Manipulation_Project/dynamics-model-rollout-worldmodel/"
+    "/data/vxiao/bimanual_manipulation/dynamics-model-rollout-worldmodel/"
     "data/outputs/2026.09.28/19.53.05_GAP_scan_object_rollout-worldmodel/checkpoints/200.ckpt"
 )
 ACTION_MAGNITUDE = 1.5  # matches cfg/dsrl_scan_object.yaml's untuned default

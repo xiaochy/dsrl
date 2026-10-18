@@ -6,7 +6,7 @@
 #SBATCH --cpus-per-task=10
 #SBATCH --mem=60G
 #SBATCH --time=04:00:00
-#SBATCH --output=/project_data/held/vxiao/Bimanual_Manipulation_Project/dsrl-scan-object/outputs/dsrl_train_explore_2k-%j.out
+#SBATCH --output=/data/vxiao/bimanual_manipulation/dsrl-scan-object/outputs/dsrl_train_explore_2k-%j.out
 
 # Medium-scale exploratory DSRL training run (user's own choice, 2026-10-13):
 # NOT a real/final training run -- 2000 chunk-steps (~3-4s/step incl. SAC
@@ -19,12 +19,12 @@ set -o pipefail
 source /project_data/held/vxiao/app/anaconda3/etc/profile.d/conda.sh
 conda activate RoboTwin
 
-cd /project_data/held/vxiao/Bimanual_Manipulation_Project/RoboTwin
+cd /data/vxiao/bimanual_manipulation/RoboTwin
 
 DSRL_TOTAL_TIMESTEPS=2000 DSRL_LEARNING_STARTS=1 DSRL_LOG_FREQ=10 \
-    python3 /project_data/held/vxiao/Bimanual_Manipulation_Project/dsrl-scan-object/train_dsrl_scan_object.py \
+    python3 /data/vxiao/bimanual_manipulation/dsrl-scan-object/train_dsrl_scan_object.py \
     use_wandb=False env.max_episode_steps=500 \
     name=scan_object_explore_2k \
-    log_dir=/project_data/held/vxiao/Bimanual_Manipulation_Project/dsrl-scan-object/logs
+    log_dir=/data/vxiao/bimanual_manipulation/dsrl-scan-object/logs
 rc=$?
 echo "=== train_dsrl_scan_object.py rc=$rc ==="

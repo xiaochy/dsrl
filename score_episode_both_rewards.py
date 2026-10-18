@@ -28,7 +28,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--chain_pkl", required=True)
     ap.add_argument("--out", required=True)
-    ap.add_argument("--dynamics_ckpt", default="/project_data/held/vxiao/Bimanual_Manipulation_Project/dynamics-model-rollout-worldmodel/data/outputs/2026.09.28/19.53.05_GAP_scan_object_rollout-worldmodel/checkpoints/200.ckpt")
+    ap.add_argument("--dynamics_ckpt", default="/data/vxiao/bimanual_manipulation/dynamics-model-rollout-worldmodel/data/outputs/2026.09.28/19.53.05_GAP_scan_object_rollout-worldmodel/checkpoints/200.ckpt")
     ap.add_argument("--device", default="cuda")
     args = ap.parse_args()
     device = args.device if torch.cuda.is_available() else "cpu"

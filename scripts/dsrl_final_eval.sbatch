@@ -6,7 +6,7 @@
 #SBATCH --cpus-per-task=10
 #SBATCH --mem=60G
 #SBATCH --time=03:00:00
-#SBATCH --output=/project_data/held/vxiao/Bimanual_Manipulation_Project/dsrl-scan-object/outputs/dsrl_final_eval-%j.out
+#SBATCH --output=/data/vxiao/bimanual_manipulation/dsrl-scan-object/outputs/dsrl_final_eval-%j.out
 
 # Final deterministic 3-seed x 50-episode eval of a trained DSRL checkpoint
 # -- replaces the noisy n=3/point running estimate logged during training.
@@ -20,11 +20,11 @@ conda activate RoboTwin
 : "${REWARD_SOURCE:?must pass --export=ALL,REWARD_SOURCE=track|action}"
 : "${SEED:?must pass --export=ALL,SEED=<n>}"
 
-GAP_CKPT=/project_data/held/vxiao/Bimanual_Manipulation_Project/GAP-tte-flattenmlp-concatdit-actionrope/data/outputs/2026.09.13/17.24.29_GAP_scan_object_actionrope-baseline/checkpoints/200.ckpt
-DYNAMICS_CKPT=/project_data/held/vxiao/Bimanual_Manipulation_Project/dynamics-model-rollout-worldmodel/data/outputs/2026.09.28/19.53.05_GAP_scan_object_rollout-worldmodel/checkpoints/200.ckpt
+GAP_CKPT=/data/vxiao/bimanual_manipulation/GAP-tte-flattenmlp-concatdit-actionrope/data/outputs/2026.09.13/17.24.29_GAP_scan_object_actionrope-baseline/checkpoints/200.ckpt
+DYNAMICS_CKPT=/data/vxiao/bimanual_manipulation/dynamics-model-rollout-worldmodel/data/outputs/2026.09.28/19.53.05_GAP_scan_object_rollout-worldmodel/checkpoints/200.ckpt
 
-cd /project_data/held/vxiao/Bimanual_Manipulation_Project/RoboTwin
-python3 /project_data/held/vxiao/Bimanual_Manipulation_Project/dsrl-scan-object/dsrl_final_eval.py \
+cd /data/vxiao/bimanual_manipulation/RoboTwin
+python3 /data/vxiao/bimanual_manipulation/dsrl-scan-object/dsrl_final_eval.py \
     --ckpt "$CKPT" --gap_ckpt "$GAP_CKPT" --dynamics_ckpt "$DYNAMICS_CKPT" \
     --reward_source "$REWARD_SOURCE" --seed "$SEED" --n_episodes 50
 rc=$?

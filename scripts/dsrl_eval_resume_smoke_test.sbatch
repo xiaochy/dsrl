@@ -6,7 +6,7 @@
 #SBATCH --cpus-per-task=10
 #SBATCH --mem=60G
 #SBATCH --time=00:45:00
-#SBATCH --output=/project_data/held/vxiao/Bimanual_Manipulation_Project/dsrl-scan-object/outputs/dsrl_eval_resume_smoke-%j.out
+#SBATCH --output=/data/vxiao/bimanual_manipulation/dsrl-scan-object/outputs/dsrl_eval_resume_smoke-%j.out
 
 # Validates two new pieces before committing to a long run: (1)
 # DeterministicEvalCallback actually runs against a separate held-out-seed
@@ -21,15 +21,15 @@ set -o pipefail
 source /project_data/held/vxiao/app/anaconda3/etc/profile.d/conda.sh
 conda activate RoboTwin
 
-cd /project_data/held/vxiao/Bimanual_Manipulation_Project/RoboTwin
+cd /data/vxiao/bimanual_manipulation/RoboTwin
 
-RESUME_CKPT=/project_data/held/vxiao/Bimanual_Manipulation_Project/dsrl-scan-object/logs/scan_object-dsrl/scan_object_explore_2k/checkpoint/final.zip
+RESUME_CKPT=/data/vxiao/bimanual_manipulation/dsrl-scan-object/logs/scan_object-dsrl/scan_object_explore_2k/checkpoint/final.zip
 
 DSRL_RESUME_FROM="$RESUME_CKPT" DSRL_TOTAL_TIMESTEPS=20 DSRL_LEARNING_STARTS=1 \
     DSRL_LOG_FREQ=10 DSRL_EVAL_FREQ=10 DSRL_EVAL_EPISODES=2 \
-    python3 /project_data/held/vxiao/Bimanual_Manipulation_Project/dsrl-scan-object/train_dsrl_scan_object.py \
+    python3 /data/vxiao/bimanual_manipulation/dsrl-scan-object/train_dsrl_scan_object.py \
     use_wandb=False env.max_episode_steps=500 \
     name=scan_object_eval_resume_smoke \
-    log_dir=/project_data/held/vxiao/Bimanual_Manipulation_Project/dsrl-scan-object/logs
+    log_dir=/data/vxiao/bimanual_manipulation/dsrl-scan-object/logs
 rc=$?
 echo "=== train_dsrl_scan_object.py rc=$rc ==="

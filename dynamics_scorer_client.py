@@ -15,7 +15,7 @@ import numpy as np
 
 from dynamics_scorer_worker import read_msg, write_msg
 
-_WORKER_SCRIPT = "/project_data/held/vxiao/Bimanual_Manipulation_Project/dsrl-scan-object/dynamics_scorer_worker.py"
+_WORKER_SCRIPT = "/data/vxiao/bimanual_manipulation/dsrl-scan-object/dynamics_scorer_worker.py"
 
 
 class DynamicsScorerClient:

@@ -1,0 +1,79 @@
+Using cache found in /home/vxiao/.cache/torch/hub/facebookresearch_dinov2_main
+/home/vxiao/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/layers/swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)
+  warnings.warn("xFormers is not available (SwiGLU)")
+/home/vxiao/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/layers/attention.py:33: UserWarning: xFormers is not available (Attention)
+  warnings.warn("xFormers is not available (Attention)")
+/home/vxiao/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/layers/block.py:40: UserWarning: xFormers is not available (Block)
+  warnings.warn("xFormers is not available (Block)")
+Loading dynamics model: /project_data/held/vxiao/Bimanual_Manipulation_Project/dynamics-model-rollout-worldmodel/data/outputs/2026.09.28/19.53.05_GAP_scan_object_rollout-worldmodel/checkpoints/200.ckpt
+  [Concat self-attn decoder] scene+track fused per-patch (concat+proj); action+track+state+timestep denoised in one self-attention stack, no cross-attention
+  [Aux] 3D track prediction: 17x23 = 391 queries, horizon 16
+  [Joint diffusion] tracks denoised with actions: temporal encoder dim 512, track loss weight 0.0001
+[GAP] Configuration:
+  Vision feature dim: 1024
+  State embed dim: 1024
+  Encoder depth: 2 (Feature encoding)
+  Decoder depth: 4 (Action denoising)
+  Action dim: 16
+  Horizon: 16
+  N obs steps: 1
+  N action steps: 16
+  [Architecture] Pi3 + Transformer Encoder + Diffusion Decoder + Track head
+  [Tokens] Per-arm state/action tokens (2 state, 2x16 action)
+  [RoPE4D] world-frame (x,y,z) + step t; spatial_scale=0.01m, time_scale=16.0, bases=(100.0, 100.0)
+  [Feature Encoding] Encoder processes [vision, state] -> enriched features
+  [Positional Encoding] Vision: 2D sinusoidal (separate from features)
+  [Positional Encoding] State: Learned (separate from features)
+  [Positional Encoding] Action query: Learnable embedding
+  [Positional Encoding] Timestep: Learned (for timestep token)
+  [Diffusion Timestep] Concat as token to memory (ACT-DP-TP 'cat' mode)
+----------------------------------
+Class name: GAPPolicy
+  Number of parameters: 65.7521M
+   _dummy_variable: 0.0000M (0.00%)
+   cls_token: 0.0010M (0.00%)
+   track_query_embed: 0.4004M (0.61%)
+   track_query_pos_embed: 0.4004M (0.61%)
+   state_encoder: 0.0092M (0.01%)
+   arm_embed: 0.0020M (0.00%)
+   cls_pos_embed: 0.0010M (0.00%)
+   state_pos_embed: 0.0020M (0.00%)
+   context_encoder: 16.7997M (25.55%)
+   action_pos_embed: 0.0164M (0.02%)
+   action_embed: 1.0588M (1.61%)
+   timestep_embed: 1.3128M (2.00%)
+   timestep_pos_embed: 0.0010M (0.00%)
+   track_fusion_proj: 2.0982M (3.19%)
+   joint_dit: 43.0413M (65.46%)
+   action_head: 0.0082M (0.01%)
+   track_head: 0.0492M (0.07%)
+   track_temporal_encoder: 0.5504M (0.84%)
+----------------------------------
+Loading SVM reward model (real downloaded checkpoint)...
+50 episodes labeled, 50 chain pkl files
+
+--- Using DYNAMICS MODEL's predicted track (the real DSRL reward signal) ---
+  success  n= 407  mean=+0.2545  std=0.1199  min=-0.1094  max=+0.3875
+  failure  n= 288  mean=-0.5008  std=0.2972  min=-0.7000  max=+0.3391
+  per-step AUC (success-step logit > failure-step logit): 0.9787
+  (reference, from the model's own README, SAME task but GT track: 0.923)
+
+--- Using POLICY's own track head (for comparison, not what DSRL will use) ---
+  success  n= 407  mean=+0.2559  std=0.1153  min=-0.0074  max=+0.3891
+  failure  n= 288  mean=-0.4929  std=0.3045  min=-0.7000  max=+0.3391
+  per-step AUC (success-step logit > failure-step logit): 0.9771
+  (reference, from the model's own README, SAME task but GT track: 0.923)
+
+--- Per-chunk agreement: dynamics-track reward vs policy-track reward ---
+  Pearson r = 0.9950  (across all 695 chunks)
+  mean |reward_dyn - reward_pol| = 0.0091
+  fraction with same logit sign (same side of 0) = 0.9871
+  (high correlation here means the two track sources give the SVM model near-
+   identical information for THIS pool, despite being measurably different tracks
+   by FDE/ADE in DYNAMICS_CHAIN_REPORT.md -- i.e. the reward model may be robust
+   to track-source precision and mostly reading off coarser motion patterns. Low
+   correlation would mean the matching AUCs are a coincidence of this small pool,
+   not evidence the two track sources are interchangeable.)
+
+695 chunks scored across 50 episodes (41 success, 9 failure)
+=== svm_sanity_check.py rc=0 ===

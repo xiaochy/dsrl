@@ -1,0 +1,140 @@
+/project_data/held/vxiao/app/anaconda3/envs/RoboTwin/lib/python3.10/site-packages/sapien/_vulkan_tricks.py:37: UserWarning: Failed to find Vulkan ICD file. This is probably due to an incorrect or partial installation of the NVIDIA driver. SAPIEN will attempt to provide an ICD file anyway but it may not work.
+  warn(
+Warning, cannot find cuda-compiled version of RoPE2D, using a slow pytorch version instead
+[2026-10-16 12:35:15,041][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:15,052][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:15,054][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:15,067][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:15,068][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:15,069][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:15,070][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:15,072][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:15,073][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:15,075][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:15,118][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:15,120][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:15,121][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:15,438][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:15,441][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:15,444][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:15,445][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:15,466][curobo][INFO] - USDParser failed to import, install curobo with pip install .[usd] or pip install usd-core, NOTE: Do not install this if using with Isaac Sim.
+[2026-10-16 12:35:15,477][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:15,478][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:15,995][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:15,998][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,019][curobo][INFO] - Environment variable for CUROBO_USE_LRU_CACHE is not set, Enabling as default.
+[2026-10-16 12:35:16,019][curobo][INFO] - Environment variable for CUROBO_USE_LRU_CACHE is not set, Enabling as default.
+[2026-10-16 12:35:16,280][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,280][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,281][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,282][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,282][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,283][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,287][curobo][INFO] - Environment variable for CUROBO_USE_LRU_CACHE is not set, Enabling as default.
+[2026-10-16 12:35:16,287][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,288][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,292][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,294][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,295][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,296][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,298][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,299][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,300][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,301][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,310][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,316][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,322][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,323][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,326][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,589][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,597][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,598][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,602][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,610][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,611][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,618][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,619][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,620][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,621][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,622][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,624][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,624][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,625][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,627][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,628][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,628][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,630][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,634][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,645][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,646][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,649][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,650][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,651][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,652][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,652][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,653][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,659][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,661][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,662][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,662][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,663][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,664][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,665][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,667][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,668][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,673][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,675][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,680][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-16 12:35:16,683][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+Traceback (most recent call last):
+  File "/project_data/held/vxiao/Bimanual_Manipulation_Project/RoboTwin/envs/robot/planner.py", line 18, in <module>
+    from curobo.wrap.reacher.motion_gen import (
+  File "/project_data/held/vxiao/Bimanual_Manipulation_Project/RoboTwin/envs/curobo/src/curobo/wrap/reacher/motion_gen.py", line 1425, in <module>
+    class MotionGen(MotionGenConfig):
+  File "/project_data/held/vxiao/Bimanual_Manipulation_Project/RoboTwin/envs/curobo/src/curobo/wrap/reacher/motion_gen.py", line 4203, in MotionGen
+    grasp_approach_offset: Pose = Pose.from_list([0, 0, -0.15, 1, 0, 0, 0]),
+  File "/project_data/held/vxiao/Bimanual_Manipulation_Project/RoboTwin/envs/curobo/src/curobo/types/math.py", line 215, in from_list
+    position = torch.as_tensor(
+torch.AcceleratorError: CUDA error: CUDA-capable device(s) is/are busy or unavailable
+Search for `cudaErrorDevicesUnavailable' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
+For more detailed error information, run with CUDA_LOG_FILE=stderr
+
+[planner.py]: Something wrong happened when importing CuroboPlanner! Please check if Curobo is installed correctly. If the problem still exists, you can install Curobo from https://github.com/NVlabs/curobo manually.
+Exception traceback:
+Error executing job with overrides: ['use_wandb=False', 'env.max_episode_steps=500', 'train.action_magnitude=1.0', 'name=scan_object_initial_policy_check_am1.0', 'log_dir=/project_data/held/vxiao/Bimanual_Manipulation_Project/dsrl-scan-object/logs']
+Traceback (most recent call last):
+  File "/project_data/held/vxiao/Bimanual_Manipulation_Project/dsrl-scan-object/train_dsrl_scan_object.py", line 271, in main
+    env = DummyVecEnv([make_env])
+  File "/project_data/held/vxiao/Bimanual_Manipulation_Project/dsrl-scan-object/../DSRL-reference/stable-baselines3/stable_baselines3/common/vec_env/dummy_vec_env.py", line 31, in __init__
+    self.envs = [_patch_env(fn()) for fn in env_fns]
+  File "/project_data/held/vxiao/Bimanual_Manipulation_Project/dsrl-scan-object/../DSRL-reference/stable-baselines3/stable_baselines3/common/vec_env/dummy_vec_env.py", line 31, in <listcomp>
+    self.envs = [_patch_env(fn()) for fn in env_fns]
+  File "/project_data/held/vxiao/Bimanual_Manipulation_Project/dsrl-scan-object/train_dsrl_scan_object.py", line 261, in make_env
+    env = DSRLScanObjectGymEnv(
+  File "/project_data/held/vxiao/Bimanual_Manipulation_Project/dsrl-scan-object/gym_env.py", line 58, in __init__
+    self.env = DSRLScanObjectEnv(
+  File "/project_data/held/vxiao/Bimanual_Manipulation_Project/dsrl-scan-object/env.py", line 142, in __init__
+    self.TASK_ENV = _class_decorator(task_name)
+  File "/project_data/held/vxiao/Bimanual_Manipulation_Project/dsrl-scan-object/env.py", line 68, in _class_decorator
+    envs_module = importlib.import_module(f"envs.{task_name}")
+  File "/project_data/held/vxiao/app/anaconda3/envs/RoboTwin/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/project_data/held/vxiao/Bimanual_Manipulation_Project/RoboTwin/envs/scan_object.py", line 1, in <module>
+    from ._base_task import Base_Task
+  File "/project_data/held/vxiao/Bimanual_Manipulation_Project/RoboTwin/envs/_base_task.py", line 17, in <module>
+    from .robot import Robot
+  File "/project_data/held/vxiao/Bimanual_Manipulation_Project/RoboTwin/envs/robot/__init__.py", line 1, in <module>
+    from .robot import *
+  File "/project_data/held/vxiao/Bimanual_Manipulation_Project/RoboTwin/envs/robot/robot.py", line 15, in <module>
+    from .planner import CuroboPlanner
+ImportError: cannot import name 'CuroboPlanner' from 'envs.robot.planner' (/project_data/held/vxiao/Bimanual_Manipulation_Project/RoboTwin/envs/robot/planner.py)
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+=== train_dsrl_scan_object.py rc=1 action_magnitude=1.0 ===

@@ -1,0 +1,18 @@
+Using cache found in /home/vxiao/.cache/torch/hub/facebookresearch_dinov2_main
+/home/vxiao/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/layers/swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)
+  warnings.warn("xFormers is not available (SwiGLU)")
+/home/vxiao/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/layers/attention.py:33: UserWarning: xFormers is not available (Attention)
+  warnings.warn("xFormers is not available (Attention)")
+/home/vxiao/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/layers/block.py:40: UserWarning: xFormers is not available (Block)
+  warnings.warn("xFormers is not available (Block)")
+Loading MVActionSVMReward (Mercury007/mv-action-svm-scan-object)...
+50 episodes labeled, 50 chain pkl files
+
+--- MVActionSVMReward on real executed actions ---
+  success  n= 407  mean=+0.1575  std=0.0956  min=-0.1672  max=+0.2578
+  failure  n= 288  mean=-0.4013  std=0.2105  min=-0.5406  max=+0.2016
+  per-step AUC (success-step logit > failure-step logit): 0.9693
+  (reference, from the model's own README, held-out eval: 0.917)
+
+695 chunks scored across 50 episodes (41 success, 9 failure)
+=== action_svm_sanity_check.py rc=0 ===

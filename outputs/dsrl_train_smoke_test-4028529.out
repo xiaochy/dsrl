@@ -1,0 +1,246 @@
+/project_data/held/vxiao/app/anaconda3/envs/RoboTwin/lib/python3.10/site-packages/sapien/_vulkan_tricks.py:37: UserWarning: Failed to find Vulkan ICD file. This is probably due to an incorrect or partial installation of the NVIDIA driver. SAPIEN will attempt to provide an ICD file anyway but it may not work.
+  warn(
+Warning, cannot find cuda-compiled version of RoPE2D, using a slow pytorch version instead
+[2026-10-13 16:58:00,689][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:00,699][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:00,700][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:00,714][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:00,715][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:00,716][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:00,716][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:00,718][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:00,720][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:00,722][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:00,766][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:00,768][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:00,769][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:01,094][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:01,098][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:01,101][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:01,102][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:01,123][curobo][INFO] - USDParser failed to import, install curobo with pip install .[usd] or pip install usd-core, NOTE: Do not install this if using with Isaac Sim.
+[2026-10-13 16:58:01,135][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:01,136][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:01,603][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:01,605][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:01,627][curobo][INFO] - Environment variable for CUROBO_USE_LRU_CACHE is not set, Enabling as default.
+[2026-10-13 16:58:01,627][curobo][INFO] - Environment variable for CUROBO_USE_LRU_CACHE is not set, Enabling as default.
+[2026-10-13 16:58:01,911][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:01,912][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:01,913][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:01,913][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:01,914][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:01,915][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:01,918][curobo][INFO] - Environment variable for CUROBO_USE_LRU_CACHE is not set, Enabling as default.
+[2026-10-13 16:58:01,919][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:01,919][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:01,926][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:01,928][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:01,929][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:01,930][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:01,932][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:01,934][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:01,935][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:01,936][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:01,945][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:01,950][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:01,957][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:01,958][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:01,960][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:02,238][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:02,247][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:02,249][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:02,252][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:02,261][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:02,262][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:02,270][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:02,272][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:02,273][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:02,274][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:02,274][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:02,276][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:02,278][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:02,278][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:02,280][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:02,282][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:02,283][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:02,284][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:02,288][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:02,299][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:02,300][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:02,303][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:02,304][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:02,305][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:02,306][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:02,307][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:02,307][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:02,314][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:02,315][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:02,316][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:02,317][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:02,318][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:02,319][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:02,319][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:02,322][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:02,323][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:02,328][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:02,330][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:02,335][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 16:58:02,337][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+/project_data/held/vxiao/Bimanual_Manipulation_Project/GAP-tte-flattenmlp-concatdit-actionrope/thirdparty/dinov2/dinov2/layers/swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)
+  warnings.warn("xFormers is not available (SwiGLU)")
+/project_data/held/vxiao/Bimanual_Manipulation_Project/GAP-tte-flattenmlp-concatdit-actionrope/thirdparty/dinov2/dinov2/layers/attention.py:33: UserWarning: xFormers is not available (Attention)
+  warnings.warn("xFormers is not available (Attention)")
+/project_data/held/vxiao/Bimanual_Manipulation_Project/GAP-tte-flattenmlp-concatdit-actionrope/thirdparty/dinov2/dinov2/layers/block.py:40: UserWarning: xFormers is not available (Block)
+  warnings.warn("xFormers is not available (Block)")
+missing pytorch3d — using a pure-torch farthest-point-sampling fallback (no custom CUDA extension required, functionally equivalent)
+[GAP] Initializing deployment policy
+[GAP] Device: cuda:0
+[GAP] Loading checkpoint from /project_data/held/vxiao/Bimanual_Manipulation_Project/GAP-tte-flattenmlp-concatdit-actionrope/data/outputs/2026.09.13/17.24.29_GAP_scan_object_actionrope-baseline/checkpoints/200.ckpt
+[GAP] Creating GAP policy model
+[GAP] DinoV2: dinov2_vitl14_reg
+[GAP] Horizon: 16
+[GAP] N obs steps: 1
+[GAP] N action steps: 16
+[GAP] Created DDIMScheduler noise scheduler
+[GAP] Created DDIMScheduler track noise scheduler
+  [Concat self-attn decoder] scene+track fused per-patch (concat+proj); action+track+state+timestep denoised in one self-attention stack, no cross-attention
+  [Aux] 3D track prediction: 17x23 = 391 queries, horizon 16
+  [Joint diffusion] tracks denoised with actions: temporal encoder dim 512, track loss weight 0.0001
+[GAP] Configuration:
+  Vision feature dim: 1024
+  State embed dim: 1024
+  Encoder depth: 2 (Feature encoding)
+  Decoder depth: 4 (Action denoising)
+  Action dim: 16
+  Horizon: 16
+  N obs steps: 1
+  N action steps: 16
+  [Architecture] Pi3 + Transformer Encoder + Diffusion Decoder + Track head
+  [Tokens] Per-arm state/action tokens (2 state, 2x16 action)
+  [RoPE4D] world-frame (x,y,z) + step t; spatial_scale=0.01m, time_scale=16.0, bases=(100.0, 100.0)
+  [Feature Encoding] Encoder processes [vision, state] -> enriched features
+  [Positional Encoding] Vision: 2D sinusoidal (separate from features)
+  [Positional Encoding] State: Learned (separate from features)
+  [Positional Encoding] Action query: Learnable embedding
+  [Positional Encoding] Timestep: Learned (for timestep token)
+  [Diffusion Timestep] Concat as token to memory (ACT-DP-TP 'cat' mode)
+----------------------------------
+Class name: GAPPolicy
+  Number of parameters: 65.7521M
+   _dummy_variable: 0.0000M (0.00%)
+   cls_token: 0.0010M (0.00%)
+   track_query_embed: 0.4004M (0.61%)
+   track_query_pos_embed: 0.4004M (0.61%)
+   state_encoder: 0.0092M (0.01%)
+   arm_embed: 0.0020M (0.00%)
+   cls_pos_embed: 0.0010M (0.00%)
+   state_pos_embed: 0.0020M (0.00%)
+   context_encoder: 16.7997M (25.55%)
+   action_pos_embed: 0.0164M (0.02%)
+   action_embed: 1.0588M (1.61%)
+   timestep_embed: 1.3128M (2.00%)
+   timestep_pos_embed: 0.0010M (0.00%)
+   track_fusion_proj: 2.0982M (3.19%)
+   joint_dit: 43.0413M (65.46%)
+   action_head: 0.0082M (0.01%)
+   track_head: 0.0492M (0.07%)
+   track_temporal_encoder: 0.5504M (0.84%)
+----------------------------------
+[GAP] Loading EMA model weights
+[GAP] Loaded normalizer from checkpoint
+[GAP] Policy loaded successfully!
+[GAP] Loading DinoV2 feature extractor...
+Loading dinov2_vitl14_reg from local directory...
+  Repo dir: /project_data/held/vxiao/Bimanual_Manipulation_Project/GAP-tte-flattenmlp-concatdit-actionrope/thirdparty/dinov2
+  Weights: /project_data/held/vxiao/Bimanual_Manipulation_Project/GAP-tte-flattenmlp-concatdit-actionrope/pretrained/dinov2_vitl14_reg4_pretrain.pth
+[2026-10-13 16:58:03,895][dinov2][INFO] - using MLP layer as FFN
+[dynamics_scorer_worker] loading dynamics model: /project_data/held/vxiao/Bimanual_Manipulation_Project/dynamics-model-rollout-worldmodel/data/outputs/2026.09.28/19.53.05_GAP_scan_object_rollout-worldmodel/checkpoints/200.ckpt
+/project_data/held/vxiao/Bimanual_Manipulation_Project/RoboTwin/envs/curobo/src/curobo/opt/opt_base.py:298: UserWarning: Sparse invariant checks are implicitly disabled. Memory errors (e.g. SEGFAULT) will occur when operating on a sparse tensor which violates the invariants, but checks incur performance overhead. To silence this warning, explicitly opt in or out. See `torch.sparse.check_sparse_tensor_invariants.__doc__` for guidance.  (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/Context.cpp:816.)
+  self.problem_kernel_ = torch.sparse_coo_tensor(
+[dynamics_scorer_worker] loading SVM reward model...
+Using cache found in /home/vxiao/.cache/torch/hub/facebookresearch_dinov2_main
+/home/vxiao/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/layers/swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)
+  warnings.warn("xFormers is not available (SwiGLU)")
+/home/vxiao/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/layers/attention.py:33: UserWarning: xFormers is not available (Attention)
+  warnings.warn("xFormers is not available (Attention)")
+/home/vxiao/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/layers/block.py:40: UserWarning: xFormers is not available (Block)
+  warnings.warn("xFormers is not available (Block)")
+[dynamics_scorer_worker] ready
+  DinoV2 backbone frozen
+  Model: dinov2_vitl14_reg
+  Patch size: 14
+  Embed dim: 1024
+  Register tokens: 4
+[GAP] DinoV2 feature extractor loaded
+env class: <class 'stable_baselines3.common.monitor.Monitor'>
+gymnasium.Env class: <class 'gymnasium.core.Env'>
+MRO: (<class 'stable_baselines3.common.monitor.Monitor'>, <class 'gymnasium.core.Wrapper'>, <class 'gymnasium.core.Env'>, <class 'typing.Generic'>, <class 'object'>)
+Is instance: True
+Using cuda device
+Warp DeprecationWarning: The symbol `warp.torch.device_from_torch` will soon be removed from the public API. Use `warp.device_from_torch` instead.
+step: [92m1 / 40[0mstep: [92m2 / 40[0mstep: [92m3 / 40[0mstep: [92m4 / 40[0mstep: [92m5 / 40[0mstep: [92m6 / 40[0mstep: [92m7 / 40[0mstep: [92m8 / 40[0mstep: [92m9 / 40[0mstep: [92m10 / 40[0mstep: [92m11 / 40[0mstep: [92m12 / 40[0mstep: [92m13 / 40[0mstep: [92m14 / 40[0mstep: [92m15 / 40[0mstep: [92m16 / 40[0mstep: [92m17 / 40[0mstep: [92m18 / 40[0mstep: [92m19 / 40[0mstep: [92m20 / 40[0mstep: [92m21 / 40[0mstep: [92m22 / 40[0mstep: [92m23 / 40[0mstep: [92m24 / 40[0mstep: [92m25 / 40[0mstep: [92m26 / 40[0mstep: [92m27 / 40[0mstep: [92m28 / 40[0mstep: [92m29 / 40[0mstep: [92m30 / 40[0mstep: [92m31 / 40[0mstep: [92m32 / 40[0mstep: [92m33 / 40[0mstep: [92m34 / 40[0mstep: [92m35 / 40[0mstep: [92m36 / 40[0mstep: [92m37 / 40[0mstep: [92m38 / 40[0mstep: [92m39 / 40[0mstep: [92m40 / 40[0m[train] step=3 episodes=1 mean_ep_reward=-0.1132 success_rate=0.000
+step: [92m1 / 40[0mstep: [92m2 / 40[0mstep: [92m3 / 40[0mstep: [92m4 / 40[0mstep: [92m5 / 40[0mstep: [92m6 / 40[0mstep: [92m7 / 40[0mstep: [92m8 / 40[0mstep: [92m9 / 40[0mstep: [92m10 / 40[0mstep: [92m11 / 40[0mstep: [92m12 / 40[0mstep: [92m13 / 40[0mstep: [92m14 / 40[0mstep: [92m15 / 40[0mstep: [92m16 / 40[0mstep: [92m17 / 40[0mstep: [92m18 / 40[0mstep: [92m19 / 40[0mstep: [92m20 / 40[0mstep: [92m21 / 40[0mstep: [92m22 / 40[0mstep: [92m23 / 40[0mstep: [92m24 / 40[0mstep: [92m25 / 40[0mstep: [92m26 / 40[0mstep: [92m27 / 40[0mstep: [92m28 / 40[0mstep: [92m29 / 40[0mstep: [92m30 / 40[0mstep: [92m31 / 40[0mstep: [92m32 / 40[0mstep: [92m33 / 40[0mstep: [92m34 / 40[0mstep: [92m35 / 40[0mstep: [92m36 / 40[0mstep: [92m37 / 40[0mstep: [92m38 / 40[0mstep: [92m39 / 40[0mstep: [92m40 / 40[0m[train] step=6 episodes=1 mean_ep_reward=0.3838 success_rate=0.000
+step: [92m1 / 40[0mstep: [92m2 / 40[0mstep: [92m3 / 40[0mstep: [92m4 / 40[0mstep: [92m5 / 40[0mstep: [92m6 / 40[0mstep: [92m7 / 40[0mstep: [92m8 / 40[0mstep: [92m9 / 40[0mstep: [92m10 / 40[0mstep: [92m11 / 40[0mstep: [92m12 / 40[0mstep: [92m13 / 40[0mstep: [92m14 / 40[0mstep: [92m15 / 40[0mstep: [92m16 / 40[0mstep: [92m17 / 40[0mstep: [92m18 / 40[0mstep: [92m19 / 40[0mstep: [92m20 / 40[0mstep: [92m21 / 40[0mstep: [92m22 / 40[0mstep: [92m23 / 40[0mstep: [92m24 / 40[0mstep: [92m25 / 40[0mstep: [92m26 / 40[0mstep: [92m27 / 40[0mstep: [92m28 / 40[0mstep: [92m29 / 40[0mstep: [92m30 / 40[0mstep: [92m31 / 40[0mstep: [92m32 / 40[0mstep: [92m33 / 40[0mstep: [92m34 / 40[0mstep: [92m35 / 40[0mstep: [92m36 / 40[0mstep: [92m37 / 40[0mstep: [92m38 / 40[0mstep: [92m39 / 40[0mstep: [92m40 / 40[0m[train] step=9 episodes=1 mean_ep_reward=0.2555 success_rate=0.000
+step: [92m1 / 40[0mstep: [92m2 / 40[0mstep: [92m3 / 40[0mstep: [92m4 / 40[0mstep: [92m5 / 40[0mstep: [92m6 / 40[0mstep: [92m7 / 40[0mstep: [92m8 / 40[0mstep: [92m9 / 40[0mstep: [92m10 / 40[0mstep: [92m11 / 40[0mstep: [92m12 / 40[0mstep: [92m13 / 40[0mstep: [92m14 / 40[0mstep: [92m15 / 40[0mstep: [92m16 / 40[0mstep: [92m17 / 40[0mstep: [92m18 / 40[0mstep: [92m19 / 40[0mstep: [92m20 / 40[0mstep: [92m21 / 40[0mstep: [92m22 / 40[0mstep: [92m23 / 40[0mstep: [92m24 / 40[0mstep: [92m25 / 40[0mstep: [92m26 / 40[0mstep: [92m27 / 40[0mstep: [92m28 / 40[0mstep: [92m29 / 40[0mstep: [92m30 / 40[0mstep: [92m31 / 40[0mstep: [92m32 / 40[0mstep: [92m33 / 40[0mstep: [92m34 / 40[0mstep: [92m35 / 40[0mstep: [92m36 / 40[0mstep: [92m37 / 40[0mstep: [92m38 / 40[0mstep: [92m39 / 40[0mstep: [92m40 / 40[0m[train] step=12 episodes=1 mean_ep_reward=-0.1480 success_rate=0.000
+---------------------------------
+| rollout/           |          |
+|    ep_len_mean     | 3        |
+|    ep_rew_mean     | 0.0945   |
+| time/              |          |
+|    episodes        | 4        |
+|    fps             | 0        |
+|    time_elapsed    | 57       |
+|    total_timesteps | 12       |
+| train/             |          |
+|    actor_loss      | -272     |
+|    critic_loss     | 1.06e+04 |
+|    ent_coef        | 0.944    |
+|    ent_coef_loss   | -10.1    |
+|    learning_rate   | 0.0003   |
+|    n_updates       | 200      |
+---------------------------------
+step: [92m1 / 40[0mstep: [92m2 / 40[0mstep: [92m3 / 40[0mstep: [92m4 / 40[0mstep: [92m5 / 40[0mstep: [92m6 / 40[0mstep: [92m7 / 40[0mstep: [92m8 / 40[0mstep: [92m9 / 40[0mstep: [92m10 / 40[0mstep: [92m11 / 40[0mstep: [92m12 / 40[0mstep: [92m13 / 40[0mstep: [92m14 / 40[0mstep: [92m15 / 40[0mstep: [92m16 / 40[0mstep: [92m17 / 40[0mstep: [92m18 / 40[0mstep: [92m19 / 40[0mstep: [92m20 / 40[0mstep: [92m21 / 40[0mstep: [92m22 / 40[0mstep: [92m23 / 40[0mstep: [92m24 / 40[0mstep: [92m25 / 40[0mstep: [92m26 / 40[0mstep: [92m27 / 40[0mstep: [92m28 / 40[0mstep: [92m29 / 40[0mstep: [92m30 / 40[0mstep: [92m31 / 40[0mstep: [92m32 / 40[0mstep: [92m33 / 40[0mstep: [92m34 / 40[0mstep: [92m35 / 40[0mstep: [92m36 / 40[0mstep: [92m37 / 40[0mstep: [92m38 / 40[0mstep: [92m39 / 40[0mstep: [92m40 / 40[0m[train] step=15 episodes=1 mean_ep_reward=0.4945 success_rate=0.000
+step: [92m1 / 40[0mstep: [92m2 / 40[0mstep: [92m3 / 40[0mstep: [92m4 / 40[0mstep: [92m5 / 40[0mstep: [92m6 / 40[0mstep: [92m7 / 40[0mstep: [92m8 / 40[0mstep: [92m9 / 40[0mstep: [92m10 / 40[0mstep: [92m11 / 40[0mstep: [92m12 / 40[0mstep: [92m13 / 40[0mstep: [92m14 / 40[0mstep: [92m15 / 40[0mstep: [92m16 / 40[0mstep: [92m17 / 40[0mstep: [92m18 / 40[0mstep: [92m19 / 40[0mstep: [92m20 / 40[0mstep: [92m21 / 40[0mstep: [92m22 / 40[0mstep: [92m23 / 40[0mstep: [92m24 / 40[0mstep: [92m25 / 40[0mstep: [92m26 / 40[0mstep: [92m27 / 40[0mstep: [92m28 / 40[0mstep: [92m29 / 40[0mstep: [92m30 / 40[0mstep: [92m31 / 40[0mstep: [92m32 / 40[0mstep: [92m33 / 40[0mstep: [92m34 / 40[0mstep: [92m35 / 40[0mstep: [92m36 / 40[0mstep: [92m37 / 40[0mstep: [92m38 / 40[0mstep: [92m39 / 40[0mstep: [92m40 / 40[0m[train] step=18 episodes=1 mean_ep_reward=0.1371 success_rate=0.000
+step: [92m1 / 40[0mstep: [92m2 / 40[0mstep: [92m3 / 40[0mstep: [92m4 / 40[0mstep: [92m5 / 40[0mstep: [92m6 / 40[0mstep: [92m7 / 40[0mstep: [92m8 / 40[0mstep: [92m9 / 40[0mstep: [92m10 / 40[0mstep: [92m11 / 40[0mstep: [92m12 / 40[0mstep: [92m13 / 40[0mstep: [92m14 / 40[0mstep: [92m15 / 40[0mstep: [92m16 / 40[0mstep: [92m17 / 40[0mstep: [92m18 / 40[0mstep: [92m19 / 40[0mstep: [92m20 / 40[0mstep: [92m21 / 40[0mstep: [92m22 / 40[0mstep: [92m23 / 40[0mstep: [92m24 / 40[0mstep: [92m25 / 40[0mstep: [92m26 / 40[0mstep: [92m27 / 40[0mstep: [92m28 / 40[0mstep: [92m29 / 40[0mstep: [92m30 / 40[0mstep: [92m31 / 40[0mstep: [92m32 / 40[0mstep: [92m33 / 40[0mstep: [92m34 / 40[0mstep: [92m35 / 40[0mstep: [92m36 / 40[0mstep: [92m37 / 40[0mstep: [92m38 / 40[0mstep: [92m39 / 40[0mstep: [92m40 / 40[0m[train] step=21 episodes=1 mean_ep_reward=0.0066 success_rate=0.000
+step: [92m1 / 40[0mstep: [92m2 / 40[0mstep: [92m3 / 40[0mstep: [92m4 / 40[0mstep: [92m5 / 40[0mstep: [92m6 / 40[0mstep: [92m7 / 40[0mstep: [92m8 / 40[0mstep: [92m9 / 40[0mstep: [92m10 / 40[0mstep: [92m11 / 40[0mstep: [92m12 / 40[0mstep: [92m13 / 40[0mstep: [92m14 / 40[0mstep: [92m15 / 40[0mstep: [92m16 / 40[0mstep: [92m17 / 40[0mstep: [92m18 / 40[0mstep: [92m19 / 40[0mstep: [92m20 / 40[0mstep: [92m21 / 40[0mstep: [92m22 / 40[0mstep: [92m23 / 40[0mstep: [92m24 / 40[0mstep: [92m25 / 40[0mstep: [92m26 / 40[0mstep: [92m27 / 40[0mstep: [92m28 / 40[0mstep: [92m29 / 40[0mstep: [92m30 / 40[0mstep: [92m31 / 40[0mstep: [92m32 / 40[0mstep: [92m33 / 40[0mstep: [92m34 / 40[0mstep: [92m35 / 40[0mstep: [92m36 / 40[0mstep: [92m37 / 40[0mstep: [92m38 / 40[0mstep: [92m39 / 40[0mstep: [92m40 / 40[0m[train] step=24 episodes=1 mean_ep_reward=0.0543 success_rate=0.000
+---------------------------------
+| rollout/           |          |
+|    ep_len_mean     | 3        |
+|    ep_rew_mean     | 0.134    |
+| time/              |          |
+|    episodes        | 8        |
+|    fps             | 0        |
+|    time_elapsed    | 93       |
+|    total_timesteps | 24       |
+| train/             |          |
+|    actor_loss      | -367     |
+|    critic_loss     | 4.86e+03 |
+|    ent_coef        | 0.878    |
+|    ent_coef_loss   | -22.7    |
+|    learning_rate   | 0.0003   |
+|    n_updates       | 440      |
+---------------------------------
+step: [92m1 / 40[0mstep: [92m2 / 40[0mstep: [92m3 / 40[0mstep: [92m4 / 40[0mstep: [92m5 / 40[0mstep: [92m6 / 40[0mstep: [92m7 / 40[0mstep: [92m8 / 40[0mstep: [92m9 / 40[0mstep: [92m10 / 40[0mstep: [92m11 / 40[0mstep: [92m12 / 40[0mstep: [92m13 / 40[0mstep: [92m14 / 40[0mstep: [92m15 / 40[0mstep: [92m16 / 40[0mstep: [92m17 / 40[0mstep: [92m18 / 40[0mstep: [92m19 / 40[0mstep: [92m20 / 40[0mstep: [92m21 / 40[0mstep: [92m22 / 40[0mstep: [92m23 / 40[0mstep: [92m24 / 40[0mstep: [92m25 / 40[0mstep: [92m26 / 40[0mstep: [92m27 / 40[0mstep: [92m28 / 40[0mstep: [92m29 / 40[0mstep: [92m30 / 40[0mstep: [92m31 / 40[0mstep: [92m32 / 40[0mstep: [92m33 / 40[0mstep: [92m34 / 40[0mstep: [92m35 / 40[0mstep: [92m36 / 40[0mstep: [92m37 / 40[0mstep: [92m38 / 40[0mstep: [92m39 / 40[0mstep: [92m40 / 40[0m[train] step=27 episodes=1 mean_ep_reward=0.2238 success_rate=0.000
+step: [92m1 / 40[0mstep: [92m2 / 40[0mstep: [92m3 / 40[0mstep: [92m4 / 40[0mstep: [92m5 / 40[0mstep: [92m6 / 40[0mstep: [92m7 / 40[0mstep: [92m8 / 40[0mstep: [92m9 / 40[0mstep: [92m10 / 40[0mstep: [92m11 / 40[0mstep: [92m12 / 40[0mstep: [92m13 / 40[0mstep: [92m14 / 40[0mstep: [92m15 / 40[0mstep: [92m16 / 40[0mstep: [92m17 / 40[0mstep: [92m18 / 40[0mstep: [92m19 / 40[0mstep: [92m20 / 40[0mstep: [92m21 / 40[0mstep: [92m22 / 40[0mstep: [92m23 / 40[0mstep: [92m24 / 40[0mstep: [92m25 / 40[0mstep: [92m26 / 40[0mstep: [92m27 / 40[0mstep: [92m28 / 40[0mstep: [92m29 / 40[0mstep: [92m30 / 40[0mstep: [92m31 / 40[0mstep: [92m32 / 40[0mstep: [92m33 / 40[0mstep: [92m34 / 40[0mstep: [92m35 / 40[0mstep: [92m36 / 40[0mstep: [92m37 / 40[0mstep: [92m38 / 40[0mstep: [92m39 / 40[0mstep: [92m40 / 40[0m[train] step=30 episodes=1 mean_ep_reward=0.3176 success_rate=0.000
+step: [92m1 / 40[0mstep: [92m2 / 40[0mstep: [92m3 / 40[0mstep: [92m4 / 40[0mstep: [92m5 / 40[0mstep: [92m6 / 40[0mstep: [92m7 / 40[0mstep: [92m8 / 40[0mstep: [92m9 / 40[0mstep: [92m10 / 40[0mstep: [92m11 / 40[0mstep: [92m12 / 40[0mstep: [92m13 / 40[0mstep: [92m14 / 40[0mstep: [92m15 / 40[0mstep: [92m16 / 40[0mstep: [92m17 / 40[0mstep: [92m18 / 40[0mstep: [92m19 / 40[0mstep: [92m20 / 40[0mstep: [92m21 / 40[0mstep: [92m22 / 40[0mstep: [92m23 / 40[0mstep: [92m24 / 40[0mstep: [92m25 / 40[0mstep: [92m26 / 40[0mstep: [92m27 / 40[0mstep: [92m28 / 40[0mstep: [92m29 / 40[0mstep: [92m30 / 40[0mstep: [92m31 / 40[0mstep: [92m32 / 40[0mstep: [92m33 / 40[0mstep: [92m34 / 40[0mstep: [92m35 / 40[0mstep: [92m36 / 40[0mstep: [92m37 / 40[0mstep: [92m38 / 40[0mstep: [92m39 / 40[0mstep: [92m40 / 40[0m[train] step=33 episodes=1 mean_ep_reward=0.4141 success_rate=0.000
+step: [92m1 / 40[0mstep: [92m2 / 40[0mstep: [92m3 / 40[0mstep: [92m4 / 40[0mstep: [92m5 / 40[0mstep: [92m6 / 40[0mstep: [92m7 / 40[0mstep: [92m8 / 40[0mstep: [92m9 / 40[0mstep: [92m10 / 40[0mstep: [92m11 / 40[0mstep: [92m12 / 40[0mstep: [92m13 / 40[0mstep: [92m14 / 40[0mstep: [92m15 / 40[0mstep: [92m16 / 40[0mstep: [92m17 / 40[0mstep: [92m18 / 40[0mstep: [92m19 / 40[0mstep: [92m20 / 40[0mstep: [92m21 / 40[0mstep: [92m22 / 40[0mstep: [92m23 / 40[0mstep: [92m24 / 40[0mstep: [92m25 / 40[0mstep: [92m26 / 40[0mstep: [92m27 / 40[0mstep: [92m28 / 40[0mstep: [92m29 / 40[0mstep: [92m30 / 40[0mstep: [92m31 / 40[0mstep: [92m32 / 40[0mstep: [92m33 / 40[0mstep: [92m34 / 40[0mstep: [92m35 / 40[0mstep: [92m36 / 40[0mstep: [92m37 / 40[0mstep: [92m38 / 40[0mstep: [92m39 / 40[0mstep: [92m40 / 40[0m[train] step=36 episodes=1 mean_ep_reward=0.5414 success_rate=0.000
+---------------------------------
+| rollout/           |          |
+|    ep_len_mean     | 3        |
+|    ep_rew_mean     | 0.214    |
+| time/              |          |
+|    episodes        | 12       |
+|    fps             | 0        |
+|    time_elapsed    | 129      |
+|    total_timesteps | 36       |
+| train/             |          |
+|    actor_loss      | -458     |
+|    critic_loss     | 2.99e+03 |
+|    ent_coef        | 0.817    |
+|    ent_coef_loss   | -35.4    |
+|    learning_rate   | 0.0003   |
+|    n_updates       | 680      |
+---------------------------------
+step: [92m1 / 40[0mstep: [92m2 / 40[0mstep: [92m3 / 40[0mstep: [92m4 / 40[0mstep: [92m5 / 40[0mstep: [92m6 / 40[0mstep: [92m7 / 40[0mstep: [92m8 / 40[0mstep: [92m9 / 40[0mstep: [92m10 / 40[0mstep: [92m11 / 40[0mstep: [92m12 / 40[0mstep: [92m13 / 40[0mstep: [92m14 / 40[0mstep: [92m15 / 40[0mstep: [92m16 / 40[0mstep: [92m17 / 40[0mstep: [92m18 / 40[0mstep: [92m19 / 40[0mstep: [92m20 / 40[0mstep: [92m21 / 40[0mstep: [92m22 / 40[0mstep: [92m23 / 40[0mstep: [92m24 / 40[0mstep: [92m25 / 40[0mstep: [92m26 / 40[0mstep: [92m27 / 40[0mstep: [92m28 / 40[0mstep: [92m29 / 40[0mstep: [92m30 / 40[0mstep: [92m31 / 40[0mstep: [92m32 / 40[0mstep: [92m33 / 40[0mstep: [92m34 / 40[0mstep: [92m35 / 40[0mstep: [92m36 / 40[0mstep: [92m37 / 40[0mstep: [92m38 / 40[0mstep: [92m39 / 40[0mstep: [92m40 / 40[0m[train] step=39 episodes=1 mean_ep_reward=0.2282 success_rate=0.000
+step: [92m1 / 40[0mstep: [92m2 / 40[0mstep: [92m3 / 40[0mstep: [92m4 / 40[0mstep: [92m5 / 40[0mstep: [92m6 / 40[0mstep: [92m7 / 40[0mstep: [92m8 / 40[0mstep: [92m9 / 40[0mstep: [92m10 / 40[0mstep: [92m11 / 40[0mstep: [92m12 / 40[0mstep: [92m13 / 40[0mstep: [92m14 / 40[0mstep: [92m15 / 40[0mstep: [92m16 / 40[0m=== train_dsrl_scan_object.py rc=0 ===

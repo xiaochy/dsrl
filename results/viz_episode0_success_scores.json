@@ -1,0 +1,83 @@
+[
+  {
+    "chunk": 0,
+    "start_frame": 0,
+    "n_frames": 16,
+    "track_logit": 0.69921875,
+    "track_reward": 0.06992187350988388,
+    "action_logit": 0.328125,
+    "action_reward": 0.03281250223517418
+  },
+  {
+    "chunk": 1,
+    "start_frame": 16,
+    "n_frames": 16,
+    "track_logit": 1.125,
+    "track_reward": 0.11250000447034836,
+    "action_logit": 0.2490234375,
+    "action_reward": 0.02490234375
+  },
+  {
+    "chunk": 2,
+    "start_frame": 32,
+    "n_frames": 16,
+    "track_logit": 2.265625,
+    "track_reward": 0.2265625,
+    "action_logit": 1.578125,
+    "action_reward": 0.15781250596046448
+  },
+  {
+    "chunk": 3,
+    "start_frame": 48,
+    "n_frames": 16,
+    "track_logit": 2.828125,
+    "track_reward": 0.2828125059604645,
+    "action_logit": 1.875,
+    "action_reward": 0.1875
+  },
+  {
+    "chunk": 4,
+    "start_frame": 64,
+    "n_frames": 16,
+    "track_logit": 3.140625,
+    "track_reward": 0.3140625059604645,
+    "action_logit": 1.6015625,
+    "action_reward": 0.16015625
+  },
+  {
+    "chunk": 5,
+    "start_frame": 80,
+    "n_frames": 16,
+    "track_logit": 3.25,
+    "track_reward": 0.32500001788139343,
+    "action_logit": 2.15625,
+    "action_reward": 0.21562500298023224
+  },
+  {
+    "chunk": 6,
+    "start_frame": 96,
+    "n_frames": 16,
+    "track_logit": 3.265625,
+    "track_reward": 0.3265624940395355,
+    "action_logit": 2.171875,
+    "action_reward": 0.21718750894069672
+  },
+  {
+    "chunk": 7,
+    "start_frame": 112,
+    "n_frames": 16,
+    "track_logit": 3.265625,
+    "track_reward": 0.3265624940395355,
+    "action_logit": 2.046875,
+    "action_reward": 0.20468750596046448
+  },
+  {
+    "chunk": 8,
+    "start_frame": 128,
+    "n_frames": 16,
+    "track_logit": 3.234375,
+    "track_reward": 0.32343751192092896,
+    "action_logit": 1.921875,
+    "action_reward": 0.19218750298023224
+  }
+]

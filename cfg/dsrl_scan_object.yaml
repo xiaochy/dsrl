@@ -1,0 +1,89 @@
+defaults:
+  - _self_
+hydra:
+  run:
+    dir: ${logdir}
+  job:
+    chdir: False  # RoboTwin's envs module loads assets via paths relative to
+                  # cwd (see env.py's module docstring / dsrl_env_pilot's fix)
+                  # -- must stay at ROBOTWIN_ROOT, not hydra's own output dir.
+
+name: scan_object_dsrl_${now:%Y-%m-%d}_${now:%H-%M-%S}_${seed}
+logdir: ${log_dir}/scan_object-dsrl/${name}
+log_dir: ./logs
+
+gap_ckpt_path: "/project_data/held/vxiao/Bimanual_Manipulation_Project/GAP-tte-flattenmlp-concatdit-actionrope/data/outputs/2026.09.13/17.24.29_GAP_scan_object_actionrope-baseline/checkpoints/200.ckpt"
+dynamics_ckpt_path: "/project_data/held/vxiao/Bimanual_Manipulation_Project/dynamics-model-rollout-worldmodel/data/outputs/2026.09.28/19.53.05_GAP_scan_object_rollout-worldmodel/checkpoints/200.ckpt"
+task_config: demo_clean_depth  # must have collect_wrist_camera + depth, see
+                                # GAP-tte-.../task_config_templates/demo_clean_depth.yml
+
+algorithm: dsrl_sac  # start here (simpler, see DSRL-reference/README.md's
+                      # own tuning advice); dsrl_na is more sample-efficient
+                      # but distills a Q-function -- worth trying once
+                      # dsrl_sac's pipeline is confirmed working end to end.
+
+seed: 1
+device: cuda:0
+use_wandb: True
+env_name: scan_object
+obs_dim: null  # _TODO: = GAP's memory token count * feature_dim once flattened,
+               # OR keep obs as the raw dict and skip SB3's flat-Box
+               # observation_space entirely -- env.py's DSRLScanObjectEnv
+               # doesn't build one yet, see its module docstring.
+action_dim: 16   # GAP's raw action dim (2 arms x 8)
+act_steps: 16    # GAP's action horizon (same thing, same convention as
+                 # this project's "H" everywhere else)
+
+eval_interval: 1000
+num_evals: 20
+save_model_interval: 2000
+save_replay_buffer: False
+load_offline_data: False
+deterministic_eval: False
+
+env:
+  n_envs: 1          # start single-env (SAPIEN is heavy; DSRL-reference's
+                      # SubprocVecEnv parallelism is Robomimic/Gym-specific,
+                      # not something env.py wires up yet)
+  n_eval_envs: 1
+  max_episode_steps: 300  # scan_object's step_lim elsewhere in this project
+
+wandb:
+  project: dsrl-scan-object
+  run: ${now:%H-%M-%S}_${name}
+  group: scan_object
+
+train:
+  tau: 0.005
+  actor_lr: 3e-4
+  batch_size: 256
+  train_freq: 1
+  utd: 20
+  use_layer_norm: True
+  layer_size: 2048
+  num_layers: 3
+  discount: 0.99
+  ent_coef: -1
+  target_ent: 0.0
+  init_rollout_steps: 1500   # matches DSRL-reference's robomimic config
+                          # (1501); pre-fills the replay buffer with
+                          # UNSTEERED diffusion-policy transitions before
+                          # SAC trains at all (train_dsrl_scan_object.py's
+                          # collect_init_rollouts) -- diagnosed 2026-10-15
+                          # as likely necessary: our 256-dim noise space
+                          # (vs. their 28-dim) made the near-empty-buffer +
+                          # utd=20 combination collapse the actor's entropy
+                          # almost immediately. At ~3.5-4s/step this alone
+                          # costs ~1.5-1.7h before any SAC gradient step --
+                          # override via DSRL_INIT_ROLLOUT_STEPS for a
+                          # smaller smoke-test value.
+  action_magnitude: 1.5   # DSRL-reference's own tuning range (1-2) -- GAP's
+                          # DDIM init noise is a standard normal draw same
+                          # as the base policies DSRL was validated on, so
+                          # this default is a reasonable starting point, not
+                          # yet tuned for GAP specifically.
+  n_critics: 2
+  critic_backup_combine_type: min
+
+model:
+  device: ${device}

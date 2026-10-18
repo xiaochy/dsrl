@@ -1,0 +1,106 @@
+/project_data/held/vxiao/app/anaconda3/envs/RoboTwin/lib/python3.10/site-packages/sapien/_vulkan_tricks.py:37: UserWarning: Failed to find Vulkan ICD file. This is probably due to an incorrect or partial installation of the NVIDIA driver. SAPIEN will attempt to provide an ICD file anyway but it may not work.
+  warn(
+/project_data/held/vxiao/Bimanual_Manipulation_Project/GAP-tte-flattenmlp-concatdit-actionrope/thirdparty/dinov2/dinov2/layers/swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)
+  warnings.warn("xFormers is not available (SwiGLU)")
+/project_data/held/vxiao/Bimanual_Manipulation_Project/GAP-tte-flattenmlp-concatdit-actionrope/thirdparty/dinov2/dinov2/layers/attention.py:33: UserWarning: xFormers is not available (Attention)
+  warnings.warn("xFormers is not available (Attention)")
+/project_data/held/vxiao/Bimanual_Manipulation_Project/GAP-tte-flattenmlp-concatdit-actionrope/thirdparty/dinov2/dinov2/layers/block.py:40: UserWarning: xFormers is not available (Block)
+  warnings.warn("xFormers is not available (Block)")
+[dynamics_scorer_worker] loading dynamics model: /project_data/held/vxiao/Bimanual_Manipulation_Project/dynamics-model-rollout-worldmodel/data/outputs/2026.09.28/19.53.05_GAP_scan_object_rollout-worldmodel/checkpoints/200.ckpt
+/project_data/held/vxiao/Bimanual_Manipulation_Project/RoboTwin/envs/curobo/src/curobo/opt/opt_base.py:298: UserWarning: Sparse invariant checks are implicitly disabled. Memory errors (e.g. SEGFAULT) will occur when operating on a sparse tensor which violates the invariants, but checks incur performance overhead. To silence this warning, explicitly opt in or out. See `torch.sparse.check_sparse_tensor_invariants.__doc__` for guidance.  (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/Context.cpp:816.)
+  self.problem_kernel_ = torch.sparse_coo_tensor(
+[dynamics_scorer_worker] loading SVM reward model...
+Using cache found in /home/vxiao/.cache/torch/hub/facebookresearch_dinov2_main
+/home/vxiao/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/layers/swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)
+  warnings.warn("xFormers is not available (SwiGLU)")
+/home/vxiao/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/layers/attention.py:33: UserWarning: xFormers is not available (Attention)
+  warnings.warn("xFormers is not available (Attention)")
+/home/vxiao/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/layers/block.py:40: UserWarning: xFormers is not available (Block)
+  warnings.warn("xFormers is not available (Block)")
+[dynamics_scorer_worker] ready
+Warning, cannot find cuda-compiled version of RoPE2D, using a slow pytorch version instead
+constructing DSRLScanObjectEnv (loads GAP policy + spawns dynamics scorer subprocess)...
+missing pytorch3d — using a pure-torch farthest-point-sampling fallback (no custom CUDA extension required, functionally equivalent)
+[GAP] Initializing deployment policy
+[GAP] Device: cuda
+[GAP] Loading checkpoint from /project_data/held/vxiao/Bimanual_Manipulation_Project/GAP-tte-flattenmlp-concatdit-actionrope/data/outputs/2026.09.13/17.24.29_GAP_scan_object_actionrope-baseline/checkpoints/200.ckpt
+[GAP] Creating GAP policy model
+[GAP] DinoV2: dinov2_vitl14_reg
+[GAP] Horizon: 16
+[GAP] N obs steps: 1
+[GAP] N action steps: 16
+[GAP] Created DDIMScheduler noise scheduler
+[GAP] Created DDIMScheduler track noise scheduler
+  [Concat self-attn decoder] scene+track fused per-patch (concat+proj); action+track+state+timestep denoised in one self-attention stack, no cross-attention
+  [Aux] 3D track prediction: 17x23 = 391 queries, horizon 16
+  [Joint diffusion] tracks denoised with actions: temporal encoder dim 512, track loss weight 0.0001
+[GAP] Configuration:
+  Vision feature dim: 1024
+  State embed dim: 1024
+  Encoder depth: 2 (Feature encoding)
+  Decoder depth: 4 (Action denoising)
+  Action dim: 16
+  Horizon: 16
+  N obs steps: 1
+  N action steps: 16
+  [Architecture] Pi3 + Transformer Encoder + Diffusion Decoder + Track head
+  [Tokens] Per-arm state/action tokens (2 state, 2x16 action)
+  [RoPE4D] world-frame (x,y,z) + step t; spatial_scale=0.01m, time_scale=16.0, bases=(100.0, 100.0)
+  [Feature Encoding] Encoder processes [vision, state] -> enriched features
+  [Positional Encoding] Vision: 2D sinusoidal (separate from features)
+  [Positional Encoding] State: Learned (separate from features)
+  [Positional Encoding] Action query: Learnable embedding
+  [Positional Encoding] Timestep: Learned (for timestep token)
+  [Diffusion Timestep] Concat as token to memory (ACT-DP-TP 'cat' mode)
+----------------------------------
+Class name: GAPPolicy
+  Number of parameters: 65.7521M
+   _dummy_variable: 0.0000M (0.00%)
+   cls_token: 0.0010M (0.00%)
+   track_query_embed: 0.4004M (0.61%)
+   track_query_pos_embed: 0.4004M (0.61%)
+   state_encoder: 0.0092M (0.01%)
+   arm_embed: 0.0020M (0.00%)
+   cls_pos_embed: 0.0010M (0.00%)
+   state_pos_embed: 0.0020M (0.00%)
+   context_encoder: 16.7997M (25.55%)
+   action_pos_embed: 0.0164M (0.02%)
+   action_embed: 1.0588M (1.61%)
+   timestep_embed: 1.3128M (2.00%)
+   timestep_pos_embed: 0.0010M (0.00%)
+   track_fusion_proj: 2.0982M (3.19%)
+   joint_dit: 43.0413M (65.46%)
+   action_head: 0.0082M (0.01%)
+   track_head: 0.0492M (0.07%)
+   track_temporal_encoder: 0.5504M (0.84%)
+----------------------------------
+[GAP] Loading EMA model weights
+[GAP] Loaded normalizer from checkpoint
+[GAP] Policy loaded successfully!
+[GAP] Loading DinoV2 feature extractor...
+Loading dinov2_vitl14_reg from local directory...
+  Repo dir: /project_data/held/vxiao/Bimanual_Manipulation_Project/GAP-tte-flattenmlp-concatdit-actionrope/thirdparty/dinov2
+  Weights: /project_data/held/vxiao/Bimanual_Manipulation_Project/GAP-tte-flattenmlp-concatdit-actionrope/pretrained/dinov2_vitl14_reg4_pretrain.pth
+  DinoV2 backbone frozen
+  Model: dinov2_vitl14_reg
+  Patch size: 14
+  Embed dim: 1024
+  Register tokens: 4
+[GAP] DinoV2 feature extractor loaded
+construction took 7.8s
+
+=== episode 0 ===
+Warp DeprecationWarning: The symbol `warp.torch.device_from_torch` will soon be removed from the public API. Use `warp.device_from_torch` instead.
+reset() obs keys: ['state', 'dino_features', 'patch_centers'] state shape: (16,) dino_features shape: (391, 1024) patch_centers: (391, 3)
+step: [92m1 / 40[0mstep: [92m2 / 40[0mstep: [92m3 / 40[0mstep: [92m4 / 40[0mstep: [92m5 / 40[0mstep: [92m6 / 40[0mstep: [92m7 / 40[0mstep: [92m8 / 40[0mstep: [92m9 / 40[0mstep: [92m10 / 40[0mstep: [92m11 / 40[0mstep: [92m12 / 40[0mstep: [92m13 / 40[0mstep: [92m14 / 40[0mstep: [92m15 / 40[0mstep: [92m16 / 40[0mstep 0: reward=0.0357 done=False info={'success': False} (3.31s)
+step: [92m17 / 40[0mstep: [92m18 / 40[0mstep: [92m19 / 40[0mstep: [92m20 / 40[0mstep: [92m21 / 40[0mstep: [92m22 / 40[0mstep: [92m23 / 40[0mstep: [92m24 / 40[0mstep: [92m25 / 40[0mstep: [92m26 / 40[0mstep: [92m27 / 40[0mstep: [92m28 / 40[0mstep: [92m29 / 40[0mstep: [92m30 / 40[0mstep: [92m31 / 40[0mstep: [92m32 / 40[0mstep 1: reward=0.0914 done=False info={'success': False} (3.12s)
+step: [92m33 / 40[0mstep: [92m34 / 40[0mstep: [92m35 / 40[0mstep: [92m36 / 40[0mstep: [92m37 / 40[0mstep: [92m38 / 40[0mstep: [92m39 / 40[0mstep: [92m40 / 40[0mstep 2: reward=0.1617 done=True info={'success': False} (1.68s)
+
+=== episode 1 ===
+reset() obs keys: ['state', 'dino_features', 'patch_centers'] state shape: (16,) dino_features shape: (391, 1024) patch_centers: (391, 3)
+step: [92m1 / 40[0mstep: [92m2 / 40[0mstep: [92m3 / 40[0mstep: [92m4 / 40[0mstep: [92m5 / 40[0mstep: [92m6 / 40[0mstep: [92m7 / 40[0mstep: [92m8 / 40[0mstep: [92m9 / 40[0mstep: [92m10 / 40[0mstep: [92m11 / 40[0mstep: [92m12 / 40[0mstep: [92m13 / 40[0mstep: [92m14 / 40[0mstep: [92m15 / 40[0mstep: [92m16 / 40[0mstep 0: reward=0.0730 done=False info={'success': False} (3.01s)
+step: [92m17 / 40[0mstep: [92m18 / 40[0mstep: [92m19 / 40[0mstep: [92m20 / 40[0mstep: [92m21 / 40[0mstep: [92m22 / 40[0mstep: [92m23 / 40[0mstep: [92m24 / 40[0mstep: [92m25 / 40[0mstep: [92m26 / 40[0mstep: [92m27 / 40[0mstep: [92m28 / 40[0mstep: [92m29 / 40[0mstep: [92m30 / 40[0mstep: [92m31 / 40[0mstep: [92m32 / 40[0mstep 1: reward=0.1063 done=False info={'success': False} (3.08s)
+step: [92m33 / 40[0mstep: [92m34 / 40[0mstep: [92m35 / 40[0mstep: [92m36 / 40[0mstep: [92m37 / 40[0mstep: [92m38 / 40[0mstep: [92m39 / 40[0mstep: [92m40 / 40[0mstep 2: reward=0.0758 done=True info={'success': False} (1.76s)
+
+DSRL ENV SMOKE TEST PASSED
+=== dsrl_env_smoke_test.py rc=0 ===

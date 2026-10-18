@@ -1,0 +1,275 @@
+/project_data/held/vxiao/app/anaconda3/envs/RoboTwin/lib/python3.10/site-packages/sapien/_vulkan_tricks.py:37: UserWarning: Failed to find Vulkan ICD file. This is probably due to an incorrect or partial installation of the NVIDIA driver. SAPIEN will attempt to provide an ICD file anyway but it may not work.
+  warn(
+Warning, cannot find cuda-compiled version of RoPE2D, using a slow pytorch version instead
+[2026-10-13 22:47:58,027][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:58,035][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:58,036][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:58,049][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:58,050][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:58,051][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:58,052][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:58,054][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:58,056][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:58,057][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:58,098][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:58,100][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:58,101][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:58,357][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:58,359][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:58,363][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:58,364][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:58,381][curobo][INFO] - USDParser failed to import, install curobo with pip install .[usd] or pip install usd-core, NOTE: Do not install this if using with Isaac Sim.
+[2026-10-13 22:47:58,390][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:58,391][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:58,815][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:58,817][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:58,839][curobo][INFO] - Environment variable for CUROBO_USE_LRU_CACHE is not set, Enabling as default.
+[2026-10-13 22:47:58,839][curobo][INFO] - Environment variable for CUROBO_USE_LRU_CACHE is not set, Enabling as default.
+[2026-10-13 22:47:59,109][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,110][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,111][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,111][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,112][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,113][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,116][curobo][INFO] - Environment variable for CUROBO_USE_LRU_CACHE is not set, Enabling as default.
+[2026-10-13 22:47:59,117][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,118][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,122][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,124][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,125][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,126][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,128][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,129][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,131][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,132][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,141][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,145][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,155][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,156][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,159][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,430][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,439][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,440][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,444][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,453][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,453][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,472][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,474][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,475][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,476][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,477][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,479][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,480][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,481][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,482][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,483][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,484][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,486][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,490][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,498][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,499][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,502][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,503][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,504][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,505][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,506][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,506][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,513][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,514][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,515][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,516][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,517][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,517][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,518][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,520][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,521][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,526][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,528][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,533][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+[2026-10-13 22:47:59,536][curobo][INFO] - Environment variable for CUROBO_TORCH_COMPILE is not set, Disabling.
+/project_data/held/vxiao/Bimanual_Manipulation_Project/GAP-tte-flattenmlp-concatdit-actionrope/thirdparty/dinov2/dinov2/layers/swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)
+  warnings.warn("xFormers is not available (SwiGLU)")
+/project_data/held/vxiao/Bimanual_Manipulation_Project/GAP-tte-flattenmlp-concatdit-actionrope/thirdparty/dinov2/dinov2/layers/attention.py:33: UserWarning: xFormers is not available (Attention)
+  warnings.warn("xFormers is not available (Attention)")
+/project_data/held/vxiao/Bimanual_Manipulation_Project/GAP-tte-flattenmlp-concatdit-actionrope/thirdparty/dinov2/dinov2/layers/block.py:40: UserWarning: xFormers is not available (Block)
+  warnings.warn("xFormers is not available (Block)")
+missing pytorch3d — using a pure-torch farthest-point-sampling fallback (no custom CUDA extension required, functionally equivalent)
+[GAP] Initializing deployment policy
+[GAP] Device: cuda:0
+[GAP] Loading checkpoint from /project_data/held/vxiao/Bimanual_Manipulation_Project/GAP-tte-flattenmlp-concatdit-actionrope/data/outputs/2026.09.13/17.24.29_GAP_scan_object_actionrope-baseline/checkpoints/200.ckpt
+[GAP] Creating GAP policy model
+[GAP] DinoV2: dinov2_vitl14_reg
+[GAP] Horizon: 16
+[GAP] N obs steps: 1
+[GAP] N action steps: 16
+[GAP] Created DDIMScheduler noise scheduler
+[GAP] Created DDIMScheduler track noise scheduler
+  [Concat self-attn decoder] scene+track fused per-patch (concat+proj); action+track+state+timestep denoised in one self-attention stack, no cross-attention
+  [Aux] 3D track prediction: 17x23 = 391 queries, horizon 16
+  [Joint diffusion] tracks denoised with actions: temporal encoder dim 512, track loss weight 0.0001
+[GAP] Configuration:
+  Vision feature dim: 1024
+  State embed dim: 1024
+  Encoder depth: 2 (Feature encoding)
+  Decoder depth: 4 (Action denoising)
+  Action dim: 16
+  Horizon: 16
+  N obs steps: 1
+  N action steps: 16
+  [Architecture] Pi3 + Transformer Encoder + Diffusion Decoder + Track head
+  [Tokens] Per-arm state/action tokens (2 state, 2x16 action)
+  [RoPE4D] world-frame (x,y,z) + step t; spatial_scale=0.01m, time_scale=16.0, bases=(100.0, 100.0)
+  [Feature Encoding] Encoder processes [vision, state] -> enriched features
+  [Positional Encoding] Vision: 2D sinusoidal (separate from features)
+  [Positional Encoding] State: Learned (separate from features)
+  [Positional Encoding] Action query: Learnable embedding
+  [Positional Encoding] Timestep: Learned (for timestep token)
+  [Diffusion Timestep] Concat as token to memory (ACT-DP-TP 'cat' mode)
+----------------------------------
+Class name: GAPPolicy
+  Number of parameters: 65.7521M
+   _dummy_variable: 0.0000M (0.00%)
+   cls_token: 0.0010M (0.00%)
+   track_query_embed: 0.4004M (0.61%)
+   track_query_pos_embed: 0.4004M (0.61%)
+   state_encoder: 0.0092M (0.01%)
+   arm_embed: 0.0020M (0.00%)
+   cls_pos_embed: 0.0010M (0.00%)
+   state_pos_embed: 0.0020M (0.00%)
+   context_encoder: 16.7997M (25.55%)
+   action_pos_embed: 0.0164M (0.02%)
+   action_embed: 1.0588M (1.61%)
+   timestep_embed: 1.3128M (2.00%)
+   timestep_pos_embed: 0.0010M (0.00%)
+   track_fusion_proj: 2.0982M (3.19%)
+   joint_dit: 43.0413M (65.46%)
+   action_head: 0.0082M (0.01%)
+   track_head: 0.0492M (0.07%)
+   track_temporal_encoder: 0.5504M (0.84%)
+----------------------------------
+[GAP] Loading EMA model weights
+[GAP] Loaded normalizer from checkpoint
+[GAP] Policy loaded successfully!
+[GAP] Loading DinoV2 feature extractor...
+Loading dinov2_vitl14_reg from local directory...
+  Repo dir: /project_data/held/vxiao/Bimanual_Manipulation_Project/GAP-tte-flattenmlp-concatdit-actionrope/thirdparty/dinov2
+  Weights: /project_data/held/vxiao/Bimanual_Manipulation_Project/GAP-tte-flattenmlp-concatdit-actionrope/pretrained/dinov2_vitl14_reg4_pretrain.pth
+[2026-10-13 22:48:09,705][dinov2][INFO] - using MLP layer as FFN
+Using cache found in /home/vxiao/.cache/torch/hub/facebookresearch_dinov2_main
+  DinoV2 backbone frozen
+  Model: dinov2_vitl14_reg
+  Patch size: 14
+  Embed dim: 1024
+  Register tokens: 4
+[GAP] DinoV2 feature extractor loaded
+[2026-10-13 22:48:14,207][dinov2][INFO] - using MLP layer as FFN
+env class: <class 'stable_baselines3.common.monitor.Monitor'>
+gymnasium.Env class: <class 'gymnasium.core.Env'>
+MRO: (<class 'stable_baselines3.common.monitor.Monitor'>, <class 'gymnasium.core.Wrapper'>, <class 'gymnasium.core.Env'>, <class 'typing.Generic'>, <class 'object'>)
+Is instance: True
+[GAP] Initializing deployment policy
+[GAP] Device: cuda:0
+[GAP] Loading checkpoint from /project_data/held/vxiao/Bimanual_Manipulation_Project/GAP-tte-flattenmlp-concatdit-actionrope/data/outputs/2026.09.13/17.24.29_GAP_scan_object_actionrope-baseline/checkpoints/200.ckpt
+[GAP] Creating GAP policy model
+[GAP] DinoV2: dinov2_vitl14_reg
+[GAP] Horizon: 16
+[GAP] N obs steps: 1
+[GAP] N action steps: 16
+[GAP] Created DDIMScheduler noise scheduler
+[GAP] Created DDIMScheduler track noise scheduler
+  [Concat self-attn decoder] scene+track fused per-patch (concat+proj); action+track+state+timestep denoised in one self-attention stack, no cross-attention
+  [Aux] 3D track prediction: 17x23 = 391 queries, horizon 16
+  [Joint diffusion] tracks denoised with actions: temporal encoder dim 512, track loss weight 0.0001
+[GAP] Configuration:
+  Vision feature dim: 1024
+  State embed dim: 1024
+  Encoder depth: 2 (Feature encoding)
+  Decoder depth: 4 (Action denoising)
+  Action dim: 16
+  Horizon: 16
+  N obs steps: 1
+  N action steps: 16
+  [Architecture] Pi3 + Transformer Encoder + Diffusion Decoder + Track head
+  [Tokens] Per-arm state/action tokens (2 state, 2x16 action)
+  [RoPE4D] world-frame (x,y,z) + step t; spatial_scale=0.01m, time_scale=16.0, bases=(100.0, 100.0)
+  [Feature Encoding] Encoder processes [vision, state] -> enriched features
+  [Positional Encoding] Vision: 2D sinusoidal (separate from features)
+  [Positional Encoding] State: Learned (separate from features)
+  [Positional Encoding] Action query: Learnable embedding
+  [Positional Encoding] Timestep: Learned (for timestep token)
+  [Diffusion Timestep] Concat as token to memory (ACT-DP-TP 'cat' mode)
+----------------------------------
+Class name: GAPPolicy
+  Number of parameters: 65.7521M
+   _dummy_variable: 0.0000M (0.00%)
+   cls_token: 0.0010M (0.00%)
+   track_query_embed: 0.4004M (0.61%)
+   track_query_pos_embed: 0.4004M (0.61%)
+   state_encoder: 0.0092M (0.01%)
+   arm_embed: 0.0020M (0.00%)
+   cls_pos_embed: 0.0010M (0.00%)
+   state_pos_embed: 0.0020M (0.00%)
+   context_encoder: 16.7997M (25.55%)
+   action_pos_embed: 0.0164M (0.02%)
+   action_embed: 1.0588M (1.61%)
+   timestep_embed: 1.3128M (2.00%)
+   timestep_pos_embed: 0.0010M (0.00%)
+   track_fusion_proj: 2.0982M (3.19%)
+   joint_dit: 43.0413M (65.46%)
+   action_head: 0.0082M (0.01%)
+   track_head: 0.0492M (0.07%)
+   track_temporal_encoder: 0.5504M (0.84%)
+----------------------------------
+[GAP] Loading EMA model weights
+[GAP] Loaded normalizer from checkpoint
+[GAP] Policy loaded successfully!
+[GAP] Loading DinoV2 feature extractor...
+Loading dinov2_vitl14_reg from local directory...
+  Repo dir: /project_data/held/vxiao/Bimanual_Manipulation_Project/GAP-tte-flattenmlp-concatdit-actionrope/thirdparty/dinov2
+  Weights: /project_data/held/vxiao/Bimanual_Manipulation_Project/GAP-tte-flattenmlp-concatdit-actionrope/pretrained/dinov2_vitl14_reg4_pretrain.pth
+[2026-10-13 22:48:17,725][dinov2][INFO] - using MLP layer as FFN
+Using cache found in /home/vxiao/.cache/torch/hub/facebookresearch_dinov2_main
+  DinoV2 backbone frozen
+  Model: dinov2_vitl14_reg
+  Patch size: 14
+  Embed dim: 1024
+  Register tokens: 4
+[GAP] DinoV2 feature extractor loaded
+[2026-10-13 22:48:21,258][dinov2][INFO] - using MLP layer as FFN
+/project_data/held/vxiao/Bimanual_Manipulation_Project/RoboTwin/envs/curobo/src/curobo/opt/opt_base.py:298: UserWarning: Sparse invariant checks are implicitly disabled. Memory errors (e.g. SEGFAULT) will occur when operating on a sparse tensor which violates the invariants, but checks incur performance overhead. To silence this warning, explicitly opt in or out. See `torch.sparse.check_sparse_tensor_invariants.__doc__` for guidance.  (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/Context.cpp:816.)
+  self.problem_kernel_ = torch.sparse_coo_tensor(
+[W1013 22:48:48.750237053 CUDACachingAllocator.cpp:3933] memory allocation failed with OOM on device 0 while trying to allocate 16777216 bytes (free: 5505024, total: 12488474624).
+[W1013 22:48:48.754609744 CUDACachingAllocator.cpp:3933] memory allocation failed with OOM on device 0 while trying to allocate 16777216 bytes (free: 1310720, total: 12488474624).
+[W1013 22:48:48.754663863 CUDACachingAllocator.cpp:3933] memory allocation failed with OOM on device 0 while trying to allocate 16777216 bytes (free: 1310720, total: 12488474624).
+env class: <class 'stable_baselines3.common.monitor.Monitor'>
+gymnasium.Env class: <class 'gymnasium.core.Env'>
+MRO: (<class 'stable_baselines3.common.monitor.Monitor'>, <class 'gymnasium.core.Wrapper'>, <class 'gymnasium.core.Env'>, <class 'typing.Generic'>, <class 'object'>)
+Is instance: True
+Using cuda device
+Warp DeprecationWarning: The symbol `warp.torch.device_from_torch` will soon be removed from the public API. Use `warp.device_from_torch` instead.
+step: [92m1 / 500[0mstep: [92m2 / 500[0mstep: [92m3 / 500[0mstep: [92m4 / 500[0mstep: [92m5 / 500[0mstep: [92m6 / 500[0mstep: [92m7 / 500[0mstep: [92m8 / 500[0mstep: [92m9 / 500[0mstep: [92m10 / 500[0mstep: [92m11 / 500[0mstep: [92m12 / 500[0mstep: [92m13 / 500[0mstep: [92m14 / 500[0mstep: [92m15 / 500[0mstep: [92m16 / 500[0mstep: [92m17 / 500[0mstep: [92m18 / 500[0mstep: [92m19 / 500[0mstep: [92m20 / 500[0mstep: [92m21 / 500[0mstep: [92m22 / 500[0mstep: [92m23 / 500[0mstep: [92m24 / 500[0mstep: [92m25 / 500[0mstep: [92m26 / 500[0mstep: [92m27 / 500[0mstep: [92m28 / 500[0mstep: [92m29 / 500[0mstep: [92m30 / 500[0mstep: [92m31 / 500[0mstep: [92m32 / 500[0mError executing job with overrides: ['use_wandb=False', 'env.max_episode_steps=500', 'name=scan_object_action_explore_2k', 'log_dir=/project_data/held/vxiao/Bimanual_Manipulation_Project/dsrl-scan-object/logs']
+Traceback (most recent call last):
+  File "/project_data/held/vxiao/Bimanual_Manipulation_Project/dsrl-scan-object/train_dsrl_scan_object.py", line 261, in main
+    model.learn(total_timesteps=total_timesteps, reset_num_timesteps=reset_num_timesteps,
+  File "/project_data/held/vxiao/Bimanual_Manipulation_Project/dsrl-scan-object/../DSRL-reference/stable-baselines3/stable_baselines3/sac/sac.py", line 320, in learn
+    return super().learn(
+  File "/project_data/held/vxiao/Bimanual_Manipulation_Project/dsrl-scan-object/../DSRL-reference/stable-baselines3/stable_baselines3/common/off_policy_algorithm.py", line 347, in learn
+    self.train(batch_size=self.batch_size, gradient_steps=gradient_steps)
+  File "/project_data/held/vxiao/Bimanual_Manipulation_Project/dsrl-scan-object/../DSRL-reference/stable-baselines3/stable_baselines3/sac/sac.py", line 294, in train
+    self.actor.optimizer.step()
+  File "/project_data/held/vxiao/app/anaconda3/envs/RoboTwin/lib/python3.10/site-packages/torch/optim/optimizer.py", line 530, in wrapper
+    out = func(*args, **kwargs)
+  File "/project_data/held/vxiao/app/anaconda3/envs/RoboTwin/lib/python3.10/site-packages/torch/optim/optimizer.py", line 80, in _use_grad
+    ret = func(*args, **kwargs)
+  File "/project_data/held/vxiao/app/anaconda3/envs/RoboTwin/lib/python3.10/site-packages/torch/optim/adam.py", line 248, in step
+    adam(
+  File "/project_data/held/vxiao/app/anaconda3/envs/RoboTwin/lib/python3.10/site-packages/torch/optim/optimizer.py", line 148, in maybe_fallback
+    return func(*args, **kwargs)
+  File "/project_data/held/vxiao/app/anaconda3/envs/RoboTwin/lib/python3.10/site-packages/torch/optim/adam.py", line 970, in adam
+    func(
+  File "/project_data/held/vxiao/app/anaconda3/envs/RoboTwin/lib/python3.10/site-packages/torch/optim/adam.py", line 790, in _multi_tensor_adam
+    exp_avg_sq_sqrt = torch._foreach_sqrt(device_exp_avg_sqs)
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 16.00 MiB. GPU 0 has a total capacity of 11.63 GiB of which 1.25 MiB is free. Including non-PyTorch memory, this process has 11.60 GiB memory in use. Of the allocated memory 7.74 GiB is allocated by PyTorch, with 79.29 MiB allocated in private pools (e.g., CUDA Graphs), and 120.34 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+=== train_dsrl_scan_object.py rc=1 ===

@@ -1,0 +1,10 @@
+logs/
+__pycache__/
+*.pyc
+*.pyo
+.hydra/
+wandb/
+*.egg-info/
+.eggs/
+dist/
+build/

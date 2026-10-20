@@ -54,11 +54,14 @@ class DSRLScanObjectGymEnv(gymnasium.Env):
     def __init__(self, task_name: str = "scan_object", task_config: str = "demo_clean_depth",
                 gap_ckpt: str = "", dynamics_ckpt: str = "", device: str = "cuda",
                 seed: int = 0, step_lim: int = 300, action_magnitude: float = 1.5,
-                reward_source: str = "track"):
+                reward_source: str = "track", expert_check: bool = False,
+                num_inference_steps: int = 0, fixed_track_noise: bool = True):
         self.env = DSRLScanObjectEnv(
             task_name=task_name, task_config=task_config, gap_ckpt=gap_ckpt,
             dynamics_ckpt=dynamics_ckpt, device=device, seed=seed, step_lim=step_lim,
-            reward_source=reward_source,
+            reward_source=reward_source, expert_check=expert_check,
+            num_inference_steps=num_inference_steps,
+            fixed_track_noise=fixed_track_noise,
         )
         horizon, action_dim = self.env.base_policy.horizon, self.env.base_policy.action_dim
         self.action_space = spaces.Box(

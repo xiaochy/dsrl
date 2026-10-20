@@ -1,0 +1,160 @@
+{
+  "task_name": "scan_object",
+  "task_config": "demo_clean_depth",
+  "start_seed": 100200000,
+  "n": 30,
+  "n_pass": 13,
+  "pass_rate": 0.43333333333333335,
+  "records": [
+    {
+      "seed": 100200000,
+      "expert_pass": false,
+      "status": "expert_failed(plan=True,check=False)"
+    },
+    {
+      "seed": 100200001,
+      "expert_pass": true,
+      "status": "ok"
+    },
+    {
+      "seed": 100200002,
+      "expert_pass": true,
+      "status": "ok"
+    },
+    {
+      "seed": 100200003,
+      "expert_pass": false,
+      "status": "expert_failed(plan=True,check=False)"
+    },
+    {
+      "seed": 100200004,
+      "expert_pass": false,
+      "status": "expert_failed(plan=True,check=False)"
+    },
+    {
+      "seed": 100200005,
+      "expert_pass": true,
+      "status": "ok"
+    },
+    {
+      "seed": 100200006,
+      "expert_pass": false,
+      "status": "expert_failed(plan=True,check=False)"
+    },
+    {
+      "seed": 100200007,
+      "expert_pass": false,
+      "status": "expert_failed(plan=True,check=False)"
+    },
+    {
+      "seed": 100200008,
+      "expert_pass": true,
+      "status": "ok"
+    },
+    {
+      "seed": 100200009,
+      "expert_pass": true,
+      "status": "ok"
+    },
+    {
+      "seed": 100200010,
+      "expert_pass": false,
+      "status": "expert_failed(plan=False,check=False)"
+    },
+    {
+      "seed": 100200011,
+      "expert_pass": false,
+      "status": "expert_failed(plan=False,check=False)"
+    },
+    {
+      "seed": 100200012,
+      "expert_pass": true,
+      "status": "ok"
+    },
+    {
+      "seed": 100200013,
+      "expert_pass": false,
+      "status": "expert_failed(plan=True,check=False)"
+    },
+    {
+      "seed": 100200014,
+      "expert_pass": false,
+      "status": "expert_failed(plan=True,check=False)"
+    },
+    {
+      "seed": 100200015,
+      "expert_pass": false,
+      "status": "expert_failed(plan=False,check=False)"
+    },
+    {
+      "seed": 100200016,
+      "expert_pass": false,
+      "status": "expert_failed(plan=True,check=False)"
+    },
+    {
+      "seed": 100200017,
+      "expert_pass": true,
+      "status": "ok"
+    },
+    {
+      "seed": 100200018,
+      "expert_pass": false,
+      "status": "expert_failed(plan=True,check=False)"
+    },
+    {
+      "seed": 100200019,
+      "expert_pass": true,
+      "status": "ok"
+    },
+    {
+      "seed": 100200020,
+      "expert_pass": false,
+      "status": "expert_failed(plan=True,check=False)"
+    },
+    {
+      "seed": 100200021,
+      "expert_pass": true,
+      "status": "ok"
+    },
+    {
+      "seed": 100200022,
+      "expert_pass": false,
+      "status": "expert_failed(plan=True,check=False)"
+    },
+    {
+      "seed": 100200023,
+      "expert_pass": true,
+      "status": "ok"
+    },
+    {
+      "seed": 100200024,
+      "expert_pass": true,
+      "status": "ok"
+    },
+    {
+      "seed": 100200025,
+      "expert_pass": true,
+      "status": "ok"
+    },
+    {
+      "seed": 100200026,
+      "expert_pass": true,
+      "status": "ok"
+    },
+    {
+      "seed": 100200027,
+      "expert_pass": false,
+      "status": "expert_failed(plan=False,check=False)"
+    },
+    {
+      "seed": 100200028,
+      "expert_pass": false,
+      "status": "expert_failed(plan=True,check=False)"
+    },
+    {
+      "seed": 100200029,
+      "expert_pass": false,
+      "status": "expert_failed(plan=True,check=False)"
+    }
+  ]
+}

@@ -33,7 +33,8 @@ import torch
 
 
 class GAPBasePolicyWrapper:
-    def __init__(self, gap_policy, horizon: int, action_dim: int, device: str = "cuda"):
+    def __init__(self, gap_policy, horizon: int, action_dim: int, device: str = "cuda",
+                 track_seed: int = 0):
         """
         Args:
             gap_policy: a loaded, .eval()'d GAPPolicy (see
@@ -46,11 +47,46 @@ class GAPBasePolicyWrapper:
                 in dynamics-model-rollout-worldmodel's gap.py).
             horizon: GAP's action horizon (16 throughout this project).
             action_dim: GAP's raw action dim (16: 2 arms x 8).
+            track_seed: seed for the generator handed to
+                conditional_sample_from_noise. REQUIRED for a controlled
+                experiment, and previously missing: with joint_diffusion the
+                track branch draws its own torch.randn, and passing
+                generator=None makes that draw come from the GLOBAL torch RNG.
+                The track influences the action, so the policy's output was a
+                function of (obs, DSRL noise, whatever global RNG state the
+                process happened to be in) -- not reproducible run to run, and
+                not a function the DSRL agent can control.
+
+                GAP's own eval path does NOT have this problem: it passes
+                self._sample_generator (deploy_policy.py:507/:561, seeded at
+                :163-164 with an explicit comment that without it "re-running
+                the identical eval can silently land on a different success
+                rate purely from sampling noise"). The DSRL path simply never
+                plumbed it through.
+
+                Why it matters beyond reproducibility: at the deployed
+                num_inference_steps=10 the DSRL noise's authority over the
+                action is ~1/370, so uncontrolled track noise can easily
+                dominate the agent's own influence on the outcome. For RL that
+                is unobservable, uncontrollable return variance sitting on top
+                of an already tiny signal. Found 2026-10-19, when a recorded
+                rollout disagreed with the outcome-sensitivity measurement on
+                the same scene and nominally the same noise draw.
         """
         self.policy = gap_policy.eval()
         self.horizon = horizon
         self.action_dim = action_dim
         self.device = device
+        self.track_seed = track_seed
+        self._generator = torch.Generator(device=device)
+        self._generator.manual_seed(track_seed)
+
+    def reseed_track(self, seed: int):
+        """Re-seed the track generator, e.g. at the start of each episode so
+        repeated runs of one scene see an IDENTICAL track-noise stream and the
+        only thing varying is the DSRL action."""
+        self.track_seed = seed
+        self._generator.manual_seed(seed)
 
     @torch.no_grad()
     def __call__(self, obs: Dict[str, torch.Tensor], initial_noise, return_numpy: bool = True):
@@ -62,8 +98,13 @@ class GAPBasePolicyWrapper:
                 (DSRL's parallel-env count).
             initial_noise: [B, horizon*action_dim] or [B, horizon,
                 action_dim], the SAC agent's sampled action (numpy or
-                torch) -- this IS the DSRL noise-steering action, bounded
-                by cfg.train.action_magnitude in cfg/dsrl_scan_object.yaml.
+                torch) -- this IS the DSRL noise-steering action. Nothing
+                here clips or rescales it; the bound, if any, comes from the
+                SAC actor's own parameterization. With
+                cfg.train.squash_actions=True it is hard-bounded by
+                cfg.train.action_magnitude (and so cannot reproduce the tails
+                of the N(0,1) that GAP's DDIM was trained on); with
+                squash_actions=False it is an unbounded Gaussian.
 
         Returns:
             diffused_actions: [B, horizon, action_dim], numpy if
@@ -82,7 +123,8 @@ class GAPBasePolicyWrapper:
             for k, v in obs.items()
         }
 
-        action = self.policy.predict_action_from_noise(obs_t, initial_noise)
+        action = self.policy.predict_action_from_noise(
+            obs_t, initial_noise, generator=self._generator)
         if return_numpy:
             action = action.detach().cpu().numpy()
         return action

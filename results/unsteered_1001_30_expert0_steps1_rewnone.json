@@ -1,0 +1,193 @@
+{
+  "env_seed": 1001,
+  "n": 30,
+  "num_inference_steps": 1,
+  "reward_source": "none",
+  "expert_check": false,
+  "task_config": "demo_clean_depth",
+  "n_success": 11,
+  "success_rate": 0.36666666666666664,
+  "skipped_seeds": [],
+  "episodes": [
+    {
+      "episode": 0,
+      "seed": 100200000,
+      "success": false,
+      "chunk_steps": 32
+    },
+    {
+      "episode": 1,
+      "seed": 100200001,
+      "success": false,
+      "chunk_steps": 32
+    },
+    {
+      "episode": 2,
+      "seed": 100200002,
+      "success": false,
+      "chunk_steps": 32
+    },
+    {
+      "episode": 3,
+      "seed": 100200003,
+      "success": false,
+      "chunk_steps": 32
+    },
+    {
+      "episode": 4,
+      "seed": 100200004,
+      "success": false,
+      "chunk_steps": 32
+    },
+    {
+      "episode": 5,
+      "seed": 100200005,
+      "success": false,
+      "chunk_steps": 32
+    },
+    {
+      "episode": 6,
+      "seed": 100200006,
+      "success": true,
+      "chunk_steps": 12
+    },
+    {
+      "episode": 7,
+      "seed": 100200007,
+      "success": false,
+      "chunk_steps": 32
+    },
+    {
+      "episode": 8,
+      "seed": 100200008,
+      "success": true,
+      "chunk_steps": 11
+    },
+    {
+      "episode": 9,
+      "seed": 100200009,
+      "success": true,
+      "chunk_steps": 11
+    },
+    {
+      "episode": 10,
+      "seed": 100200010,
+      "success": false,
+      "chunk_steps": 32
+    },
+    {
+      "episode": 11,
+      "seed": 100200011,
+      "success": true,
+      "chunk_steps": 11
+    },
+    {
+      "episode": 12,
+      "seed": 100200012,
+      "success": true,
+      "chunk_steps": 12
+    },
+    {
+      "episode": 13,
+      "seed": 100200013,
+      "success": false,
+      "chunk_steps": 32
+    },
+    {
+      "episode": 14,
+      "seed": 100200014,
+      "success": false,
+      "chunk_steps": 32
+    },
+    {
+      "episode": 15,
+      "seed": 100200015,
+      "success": false,
+      "chunk_steps": 32
+    },
+    {
+      "episode": 16,
+      "seed": 100200016,
+      "success": false,
+      "chunk_steps": 32
+    },
+    {
+      "episode": 17,
+      "seed": 100200017,
+      "success": false,
+      "chunk_steps": 32
+    },
+    {
+      "episode": 18,
+      "seed": 100200018,
+      "success": false,
+      "chunk_steps": 32
+    },
+    {
+      "episode": 19,
+      "seed": 100200019,
+      "success": true,
+      "chunk_steps": 13
+    },
+    {
+      "episode": 20,
+      "seed": 100200020,
+      "success": false,
+      "chunk_steps": 32
+    },
+    {
+      "episode": 21,
+      "seed": 100200021,
+      "success": true,
+      "chunk_steps": 12
+    },
+    {
+      "episode": 22,
+      "seed": 100200022,
+      "success": false,
+      "chunk_steps": 32
+    },
+    {
+      "episode": 23,
+      "seed": 100200023,
+      "success": true,
+      "chunk_steps": 11
+    },
+    {
+      "episode": 24,
+      "seed": 100200024,
+      "success": false,
+      "chunk_steps": 32
+    },
+    {
+      "episode": 25,
+      "seed": 100200025,
+      "success": true,
+      "chunk_steps": 11
+    },
+    {
+      "episode": 26,
+      "seed": 100200026,
+      "success": false,
+      "chunk_steps": 32
+    },
+    {
+      "episode": 27,
+      "seed": 100200027,
+      "success": true,
+      "chunk_steps": 11
+    },
+    {
+      "episode": 28,
+      "seed": 100200028,
+      "success": true,
+      "chunk_steps": 11
+    },
+    {
+      "episode": 29,
+      "seed": 100200029,
+      "success": false,
+      "chunk_steps": 32
+    }
+  ]
+}

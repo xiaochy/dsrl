@@ -1,0 +1,113 @@
+diff --git a/stable_baselines3/sac/policies.py b/stable_baselines3/sac/policies.py
+index a130587..36f6154 100644
+--- a/stable_baselines3/sac/policies.py
++++ b/stable_baselines3/sac/policies.py
+@@ -63,12 +63,23 @@ class Actor(BasePolicy):
+         normalize_images: bool = True,
+         post_linear_modules: Optional[list[type[nn.Module]]] = None,
+         standard_gauss_init: bool = False,
++        squash_actions: bool = True,
+     ):
+         super().__init__(
+             observation_space,
+             action_space,
+             features_extractor=features_extractor,
+             normalize_images=normalize_images,
++            # Stays True even when squash_actions=False. BasePolicy's
++            # squash_output only selects a branch in predict(): True ->
++            # unscale_action (an affine map onto the action-space bounds),
++            # False -> np.clip to those bounds. With an UNSQUASHED Gaussian we
++            # need the affine branch, not the clip: clipping would re-impose
++            # the hard bound this option exists to remove, and would also
++            # break the scale agreement between the buffer (which
++            # _sample_action fills with scale_action(...)) and the actor loss
++            # (which feeds the critic actor.action_log_prob()'s raw output).
++            # Set action_magnitude=1.0 so unscale_action is the identity.
+             squash_output=True,
+         )
+ 
+@@ -83,6 +94,7 @@ class Actor(BasePolicy):
+         self.full_std = full_std
+         self.clip_mean = clip_mean
+         self.standard_gauss_init = standard_gauss_init
++        self.squash_actions = squash_actions
+ 
+         action_dim = get_action_dim(self.action_space)
+         latent_pi_net = create_mlp(features_dim, -1, net_arch, activation_fn, post_linear_modules=post_linear_modules)
+@@ -101,18 +113,23 @@ class Actor(BasePolicy):
+             if clip_mean > 0.0:
+                 self.mu = nn.Sequential(self.mu, nn.Hardtanh(min_val=-clip_mean, max_val=clip_mean))
+         else:
++            # squash_actions=False gives an unbounded diagonal Gaussian. Needed
++            # when the action IS the noise handed to a diffusion model's reverse
++            # process: tanh makes |a| > action_magnitude unreachable, so a
++            # squashed actor cannot emit the 13.3% of N(0,1) mass beyond +-1.5
++            # no matter how it is trained (measured, with a matching std and
++            # kurtosis 1.6 vs 3.0 -- dsrl-scan-object/tests/
++            # compare_noise_distribution.py). It also drops the tanh Jacobian
++            # term from log_prob, which is what blows up under saturation.
++            dist_cls = SquashedDiagGaussianDistribution if squash_actions else DiagGaussianDistribution
++            self.action_dist = dist_cls(action_dim)  # type: ignore[assignment]
++            self.mu = nn.Linear(last_layer_dim, action_dim)
++            self.log_std = nn.Linear(last_layer_dim, action_dim)  # type: ignore[assignment]
+             if standard_gauss_init:
+-                self.action_dist = SquashedDiagGaussianDistribution(action_dim)  # type: ignore[assignment]
+-                self.mu = nn.Linear(last_layer_dim, action_dim)
+                 nn.init.zeros_(self.mu.weight)
+                 nn.init.zeros_(self.mu.bias)
+-                self.log_std = nn.Linear(last_layer_dim, action_dim)  # type: ignore[assignment]
+                 nn.init.zeros_(self.log_std.weight)
+                 nn.init.zeros_(self.log_std.bias)
+-            else:
+-                self.action_dist = SquashedDiagGaussianDistribution(action_dim)  # type: ignore[assignment]
+-                self.mu = nn.Linear(last_layer_dim, action_dim)
+-                self.log_std = nn.Linear(last_layer_dim, action_dim)  # type: ignore[assignment]
+ 
+     def _get_constructor_parameters(self) -> dict[str, Any]:
+         data = super()._get_constructor_parameters()
+@@ -128,6 +145,13 @@ class Actor(BasePolicy):
+                 use_expln=self.use_expln,
+                 features_extractor=self.features_extractor,
+                 clip_mean=self.clip_mean,
++                # Both of these change forward-pass behaviour (the action
++                # distribution, and whether log_std is clamped), so omitting
++                # them here would make SAC.load() silently rebuild a DIFFERENT
++                # actor and load these weights into it. standard_gauss_init was
++                # already missing before squash_actions was added.
++                standard_gauss_init=self.standard_gauss_init,
++                squash_actions=self.squash_actions,
+             )
+         )
+         return data
+@@ -172,8 +196,13 @@ class Actor(BasePolicy):
+             return mean_actions, self.log_std, dict(latent_sde=latent_pi)
+         # Unstructured exploration (Original implementation)
+         log_std = self.log_std(latent_pi)  # type: ignore[operator]
+-        # Original Implementation to cap the standard deviation
+-        if not self.standard_gauss_init:
++        # Original Implementation to cap the standard deviation.
++        # standard_gauss_init was allowed to skip the cap because it starts at
++        # log_std=0 exactly, where clamping to [-20, 2] is a no-op anyway. That
++        # reasoning does not carry over to an unsquashed actor: there sigma
++        # scales the noise handed to DDIM directly, with no tanh downstream to
++        # bound a runaway value, so keep the safety net in that case.
++        if not self.standard_gauss_init or not self.squash_actions:
+             log_std = th.clamp(log_std, LOG_STD_MIN, LOG_STD_MAX)
+         return mean_actions, log_std, {}
+ 
+@@ -244,6 +273,7 @@ class SACPolicy(BasePolicy):
+         share_features_extractor: bool = False,
+         post_linear_modules: Optional[list[type[nn.Module]]] = None,
+         standard_gauss_init: bool = False,
++        squash_actions: bool = True,
+     ):
+         super().__init__(
+             observation_space,
+@@ -279,6 +309,7 @@ class SACPolicy(BasePolicy):
+             "use_expln": use_expln,
+             "clip_mean": clip_mean,
+             "standard_gauss_init": standard_gauss_init,
++            "squash_actions": squash_actions,
+         }
+         self.actor_kwargs.update(sde_kwargs)
+         self.critic_kwargs = self.net_args.copy()

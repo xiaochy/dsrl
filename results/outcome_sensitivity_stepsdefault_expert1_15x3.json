@@ -1,0 +1,166 @@
+{
+  "num_inference_steps": 10,
+  "fixed_noise_control": false,
+  "fixed_track_noise": true,
+  "env_seed": 1001,
+  "n_scenes": 15,
+  "n_noise": 3,
+  "expert_check": true,
+  "flip_rate": 0.4,
+  "single_draw": 0.7555555555555555,
+  "oracle_best_of_k": 0.9333333333333333,
+  "worst_of_k": 0.5333333333333333,
+  "headroom": 0.1777777777777778,
+  "scenes": [
+    {
+      "seed": 100200001,
+      "outcomes": [
+        false,
+        true,
+        false
+      ],
+      "n_success": 1,
+      "flipped": true
+    },
+    {
+      "seed": 100200002,
+      "outcomes": [
+        false,
+        false,
+        false
+      ],
+      "n_success": 0,
+      "flipped": false
+    },
+    {
+      "seed": 100200005,
+      "outcomes": [
+        true,
+        true,
+        true
+      ],
+      "n_success": 3,
+      "flipped": false
+    },
+    {
+      "seed": 100200008,
+      "outcomes": [
+        true,
+        true,
+        true
+      ],
+      "n_success": 3,
+      "flipped": false
+    },
+    {
+      "seed": 100200009,
+      "outcomes": [
+        true,
+        true,
+        true
+      ],
+      "n_success": 3,
+      "flipped": false
+    },
+    {
+      "seed": 100200012,
+      "outcomes": [
+        true,
+        true,
+        true
+      ],
+      "n_success": 3,
+      "flipped": false
+    },
+    {
+      "seed": 100200017,
+      "outcomes": [
+        true,
+        true,
+        true
+      ],
+      "n_success": 3,
+      "flipped": false
+    },
+    {
+      "seed": 100200019,
+      "outcomes": [
+        true,
+        true,
+        true
+      ],
+      "n_success": 3,
+      "flipped": false
+    },
+    {
+      "seed": 100200021,
+      "outcomes": [
+        false,
+        true,
+        true
+      ],
+      "n_success": 2,
+      "flipped": true
+    },
+    {
+      "seed": 100200023,
+      "outcomes": [
+        false,
+        true,
+        true
+      ],
+      "n_success": 2,
+      "flipped": true
+    },
+    {
+      "seed": 100200024,
+      "outcomes": [
+        true,
+        true,
+        true
+      ],
+      "n_success": 3,
+      "flipped": false
+    },
+    {
+      "seed": 100200025,
+      "outcomes": [
+        true,
+        true,
+        true
+      ],
+      "n_success": 3,
+      "flipped": false
+    },
+    {
+      "seed": 100200026,
+      "outcomes": [
+        true,
+        false,
+        false
+      ],
+      "n_success": 1,
+      "flipped": true
+    },
+    {
+      "seed": 100200031,
+      "outcomes": [
+        true,
+        false,
+        true
+      ],
+      "n_success": 2,
+      "flipped": true
+    },
+    {
+      "seed": 100200034,
+      "outcomes": [
+        true,
+        true,
+        false
+      ],
+      "n_success": 2,
+      "flipped": true
+    }
+  ]
+}

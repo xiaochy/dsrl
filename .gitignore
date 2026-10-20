@@ -8,3 +8,10 @@ wandb/
 .eggs/
 dist/
 build/
+
+# run artifacts -- regenerable, and large (logs/ alone is 25GB)
+outputs/
+results/videos/
+results/videos_smooth/
+*.npz
+*.png

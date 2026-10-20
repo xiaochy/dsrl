@@ -47,6 +47,10 @@ so matching their 10k-timestep scale costs ~9-10h here, not 45 min.
 
 Resume support (DSRL_RESUME_FROM env var) lets a long run be reached by
 continuing from an earlier checkpoint rather than restarting from step 0.
+Pass DSRL_RESUME_REPLAY_BUFFER alongside it with the path to the buffer
+CheckpointCallback wrote (requires save_replay_buffer=True on the ORIGINAL
+run); without it the resumed run prefills instead, because resuming into an
+empty buffer at utd=20 re-creates the entropy-collapse condition.
 """
 import os
 import sys
@@ -64,6 +68,7 @@ sys.path.insert(0, os.path.join(base_path, "..", "DSRL-reference", "stable-basel
 
 from stable_baselines3 import SAC  # noqa: E402
 from stable_baselines3.common.callbacks import BaseCallback, CheckpointCallback  # noqa: E402
+from stable_baselines3.common.logger import HumanOutputFormat, KVWriter, Logger  # noqa: E402
 from stable_baselines3.common.monitor import Monitor  # noqa: E402
 from stable_baselines3.common.vec_env import DummyVecEnv  # noqa: E402
 
@@ -72,6 +77,27 @@ from gym_env import DSRLScanObjectGymEnv  # noqa: E402
 OmegaConf.register_new_resolver("eval", eval, replace=True)
 OmegaConf.register_new_resolver("round_up", math.ceil)
 OmegaConf.register_new_resolver("round_down", math.floor)
+
+
+class _WandbOutputFormat(KVWriter):
+    """Forwards SB3's internal train/* metrics (ent_coef, ent_coef_loss,
+    actor/critic losses, n_updates) to wandb -- without this they reach
+    stdout only, and ent_coef/ent_coef_loss are exactly what diagnoses the
+    entropy-collapse failure mode."""
+
+    def write(self, key_values, key_excluded, step: int = 0) -> None:
+        payload = {k: v for k, v in key_values.items()
+                   if isinstance(v, (int, float, np.integer, np.floating))}
+        if not payload:
+            return
+        try:
+            import wandb
+            # No step= : the callbacks' own wandb.log calls don't pass one, so
+            # wandb auto-increments. Mixing both would rewind the step counter.
+            # SB3's dump carries time/total_timesteps, use that as the x-axis.
+            wandb.log(payload)
+        except Exception as exc:  # must never kill a multi-hour training run
+            print(f"[wandb] dropped a metric dump: {exc}")
 
 
 class SuccessLoggingCallback(BaseCallback):
@@ -214,7 +240,8 @@ class DeterministicEvalCallback(BaseCallback):
             })
 
 
-def collect_init_rollouts(model, env, num_steps: int, action_magnitude: float):
+def collect_init_rollouts(model, env, num_steps: int, action_magnitude: float,
+                          clip: bool = True):
     """
     DSRL-reference/utils.py's collect_rollouts, adapted: our env.step(noise)
     already does the base-policy diffusion INTERNALLY (see env.py's
@@ -226,6 +253,14 @@ def collect_init_rollouts(model, env, num_steps: int, action_magnitude: float):
     (a fresh torch.randn draw), which is what populates the replay buffer
     before SAC has touched anything -- not an untrained/collapsing SAC
     actor's output.
+
+    "Close to", not equal to, because of the clip: at action_magnitude=1.5 it
+    removes the 13.3% of standard-normal mass beyond +-1.5, so even these
+    transitions are not the unsteered policy's real noise distribution. That
+    clip exists only to keep the prefill inside what a SQUASHED actor could
+    ever reproduce; pass clip=False with squash_actions=False, where the actor
+    has no bound to match and clipping would re-impose the exact defect the
+    unsquashed parameterization is there to remove.
 
     Why this matters (see daily_logs/2026-10-13.md's entropy-collapse
     diagnosis): DSRL-reference's own robomimic config uses
@@ -242,7 +277,8 @@ def collect_init_rollouts(model, env, num_steps: int, action_magnitude: float):
     obs = env.reset()
     for i in range(num_steps):
         noise = np.random.randn(env.num_envs, action_dim).astype(np.float32)
-        noise = np.clip(noise, -action_magnitude, action_magnitude)
+        if clip:
+            noise = np.clip(noise, -action_magnitude, action_magnitude)
         next_obs, reward, done, info = env.step(noise)
         buffer_action = model.policy.scale_action(noise)
         model.replay_buffer.add(obs=obs, next_obs=next_obs, action=buffer_action,
@@ -280,6 +316,8 @@ def main(cfg: OmegaConf):
             gap_ckpt=cfg.gap_ckpt_path, dynamics_ckpt=cfg.dynamics_ckpt_path,
             device=cfg.device, seed=cfg.seed, step_lim=cfg.env.max_episode_steps,
             action_magnitude=cfg.train.action_magnitude, reward_source=reward_source,
+            expert_check=cfg.env.train_expert_check,
+            num_inference_steps=cfg.num_inference_steps,
         )
         return Monitor(env)
 
@@ -296,6 +334,8 @@ def main(cfg: OmegaConf):
             gap_ckpt=cfg.gap_ckpt_path, dynamics_ckpt=cfg.dynamics_ckpt_path,
             device=cfg.device, seed=cfg.seed + 1000, step_lim=cfg.env.max_episode_steps,
             action_magnitude=cfg.train.action_magnitude, reward_source=reward_source,
+            expert_check=cfg.env.eval_expert_check,
+            num_inference_steps=cfg.num_inference_steps,
         )
         return Monitor(eval_env)
     eval_env = DummyVecEnv([make_eval_env])
@@ -308,12 +348,61 @@ def main(cfg: OmegaConf):
         log_std_init=0.0,
         post_linear_modules=post_linear_modules,
         n_critics=cfg.train.n_critics,
+        squash_actions=cfg.train.squash_actions,
+        standard_gauss_init=cfg.train.standard_gauss_init,
     )
+    if not cfg.train.squash_actions and cfg.train.action_magnitude != 1.0:
+        # With an unsquashed actor the action space bounds only enter through
+        # predict()'s unscale_action, an affine map; any value but 1.0 silently
+        # rescales the noise by that factor relative to what the actor's own
+        # log_prob -- and therefore target_ent -- is computed against.
+        raise ValueError(
+            f"squash_actions=False requires action_magnitude=1.0, got "
+            f"{cfg.train.action_magnitude}. See cfg/dsrl_scan_object.yaml.")
+    def _prefill(model):
+        """Pre-fill the replay buffer with unsteered-diffusion transitions.
+        Needed on a FRESH run and on a resume that has no saved buffer to
+        restore: with learning_starts=1 and utd=20, SAC takes 20 gradient
+        steps per env step against a near-empty buffer, which is exactly the
+        condition diagnosed on 2026-10-13 as driving the critic overfit ->
+        actor tanh-saturation -> entropy collapse. Pretrained weights do not
+        protect against it; the buffer is what does."""
+        init_rollout_steps = int(os.environ.get("DSRL_INIT_ROLLOUT_STEPS",
+                                                cfg.train.init_rollout_steps))
+        if init_rollout_steps > 0:
+            print(f"[init_rollout] collecting {init_rollout_steps} unsteered-diffusion "
+                 f"steps to pre-fill the replay buffer before SAC training starts")
+            collect_init_rollouts(model, env, init_rollout_steps,
+                                  cfg.train.action_magnitude,
+                                  clip=cfg.train.squash_actions)
+
     resume_from = os.environ.get("DSRL_RESUME_FROM")
     if resume_from:
         print(f"Resuming from {resume_from}")
         model = SAC.load(resume_from, env=env)
         reset_num_timesteps = False
+        # SAC.load restores the networks and the entropy coefficient, but NOT
+        # the replay buffer -- SB3 keeps that in a separate file, written only
+        # when CheckpointCallback got save_replay_buffer=True. Without this
+        # block a "continuation" resumed with an EMPTY buffer and skipped the
+        # prefill (it sat in the else-branch below), so it re-entered the
+        # collapse condition _prefill documents with a trained actor on top.
+        # That is an unrecorded confound in the historical
+        # scan_object_explore_10k_continued run (diagnosed 2026-10-19); the
+        # numbers from it cannot be read as a clean continuation.
+        resume_buffer = os.environ.get("DSRL_RESUME_REPLAY_BUFFER", "")
+        if resume_buffer and os.path.exists(resume_buffer):
+            model.load_replay_buffer(resume_buffer)
+            print(f"[resume] restored replay buffer from {resume_buffer} "
+                 f"({model.replay_buffer.size()} transitions)")
+        else:
+            if resume_buffer:
+                print(f"[resume] WARNING: DSRL_RESUME_REPLAY_BUFFER={resume_buffer} "
+                     f"does not exist; prefilling instead")
+            else:
+                print("[resume] no DSRL_RESUME_REPLAY_BUFFER given; the buffer is "
+                     "empty, so prefilling as a fresh run would")
+            _prefill(model)
     else:
         model = SAC(
             "MlpPolicy", env,
@@ -333,17 +422,18 @@ def main(cfg: OmegaConf):
             use_sde=False,
             sde_sample_freq=-1,
             tensorboard_log=None,  # tensorboard isn't installed in this conda env;
-                                   # SuccessLoggingCallback (wandb/print) covers logging instead
+                                   # _WandbOutputFormat below bridges SB3's own
+                                   # train/* metrics to wandb instead
             verbose=1,
             policy_kwargs=policy_kwargs,
         )
         reset_num_timesteps = True
+        _prefill(model)
 
-        init_rollout_steps = int(os.environ.get("DSRL_INIT_ROLLOUT_STEPS", cfg.train.init_rollout_steps))
-        if init_rollout_steps > 0:
-            print(f"[init_rollout] collecting {init_rollout_steps} unsteered-diffusion "
-                 f"steps to pre-fill the replay buffer before SAC training starts")
-            collect_init_rollouts(model, env, init_rollout_steps, cfg.train.action_magnitude)
+    if cfg.use_wandb:
+        model.set_logger(Logger(folder=None, output_formats=[
+            HumanOutputFormat(sys.stdout), _WandbOutputFormat(),
+        ]))
 
     checkpoint_callback = CheckpointCallback(
         save_freq=cfg.save_model_interval, save_path=cfg.logdir + "/checkpoint/",
@@ -376,6 +466,11 @@ def main(cfg: OmegaConf):
 
     total_timesteps = int(os.environ.get("DSRL_TOTAL_TIMESTEPS", 20_000_000))
     model.learn(total_timesteps=total_timesteps, reset_num_timesteps=reset_num_timesteps,
+               # SB3's own default is every 4 EPISODES, which at ~100-170
+               # chunk-steps per scan_object episode gave only 5 ent_coef points
+               # across a 500-step run -- too coarse to read the entropy-tuner
+               # trajectory, which is the main thing these runs are watched for.
+               log_interval=int(os.environ.get("DSRL_SB3_LOG_INTERVAL", 1)),
                callback=[checkpoint_callback, logging_callback, eval_callback])
 
     if len(cfg.name) > 0:

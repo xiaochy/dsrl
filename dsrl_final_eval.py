@@ -41,6 +41,14 @@ def main():
     ap.add_argument("--n_episodes", type=int, default=50)
     ap.add_argument("--step_lim", type=int, default=500)
     ap.add_argument("--action_magnitude", type=float, default=1.5)
+    ap.add_argument("--expert_check", action="store_true",
+                    help="replicate RoboTwin's scripted-expert seed filter, so "
+                         "the result is P(success | expert solves) -- the same "
+                         "quantity GAP's published numbers report. Without it "
+                         "this is an unconditioned rate over the raw seed "
+                         "stream and must NOT be compared to them: the expert "
+                         "solves only ~28%% of raw scan_object seeds (measured "
+                         "2026-10-19, see env.py's module docstring).")
     ap.add_argument("--device", default="cuda")
     args = ap.parse_args()
 
@@ -51,7 +59,7 @@ def main():
         task_name="scan_object", task_config="demo_clean_depth",
         gap_ckpt=args.gap_ckpt, dynamics_ckpt=args.dynamics_ckpt, device=args.device,
         seed=args.seed, step_lim=args.step_lim, action_magnitude=args.action_magnitude,
-        reward_source=args.reward_source,
+        reward_source=args.reward_source, expert_check=args.expert_check,
     )
 
     successes = []
@@ -71,7 +79,8 @@ def main():
 
     env.close()
     n_succ = sum(successes)
-    print(f"\n=== seed={args.seed}: {n_succ}/{len(successes)} = {n_succ / len(successes):.4f} ===")
+    print(f"\n=== seed={args.seed}: {n_succ}/{len(successes)} = {n_succ / len(successes):.4f} "
+          f"(expert_check={args.expert_check}) ===")
 
 
 if __name__ == "__main__":

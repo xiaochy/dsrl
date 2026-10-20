@@ -24,13 +24,24 @@ algorithm: dsrl_sac  # start here (simpler, see DSRL-reference/README.md's
 
 seed: 1
 device: cuda:0
-use_wandb: True
+use_wandb: True  # SB3's own train/* metrics reach wandb via
+                 # train_dsrl_scan_object.py's _WandbOutputFormat
 env_name: scan_object
 obs_dim: null  # _TODO: = GAP's memory token count * feature_dim once flattened,
                # OR keep obs as the raw dict and skip SB3's flat-Box
                # observation_space entirely -- env.py's DSRLScanObjectEnv
                # doesn't build one yet, see its module docstring.
 action_dim: 16   # GAP's raw action dim (2 arms x 8)
+num_inference_steps: 0  # 0 = use the checkpoint's own deployed value (10).
+                 # The only knob measured to change how much authority the
+                 # DSRL noise action has: authority 0.0035 at 10 steps vs
+                 # 0.046 at 1 (13.4x), with 2/3/5 all WORSE than 10 --
+                 # tests/sweep_inference_steps_authority.py, 2026-10-19. Each
+                 # DDIM step under prediction_type='sample' contracts toward
+                 # the conditional mean, so more steps converge onto a fixed
+                 # point independent of x_T. Setting 1 also makes the frozen
+                 # policy weaker, so pair any change with a success-rate
+                 # measurement at the same value.
 act_steps: 16    # GAP's action horizon (same thing, same convention as
                  # this project's "H" everywhere else)
 
@@ -47,6 +58,30 @@ env:
                       # not something env.py wires up yet)
   n_eval_envs: 1
   max_episode_steps: 300  # scan_object's step_lim elsewhere in this project
+  eval_expert_check: True   # replicate RoboTwin's own scripted-expert seed
+                    # filter in the EVAL env, so eval/success_rate_deterministic
+                    # is P(success | expert solves) -- the same quantity every
+                    # published GAP number is. Without it the metric is
+                    # unconditioned over the raw seed stream, which is NOT
+                    # comparable: measured 2026-10-19, the expert solves only
+                    # ~28% of raw scan_object/demo_clean_depth seeds (0.2778 /
+                    # 0.2793 / 0.2825 across three completed 50-episode evals'
+                    # own stored seed lists), and GAP's
+                    # scripts/eval_policy.py:254 hardcodes expert_check=True
+                    # with no override. Comparing the two manufactured a
+                    # phantom "35pp gap" that cost three falsified hypotheses.
+                    # Costs ~3.6 expert runs per eval episode the first time a
+                    # seed batch is seen; cached in
+                    # results/expert_check_cache.json after that, and the eval
+                    # env re-uses one fixed batch by design
+                    # (DeterministicEvalCallback -> reset_seed_counter).
+  train_expert_check: False  # the TRAINING env deliberately keeps every seed:
+                    # plan_success=False is the hand-written expert's own
+                    # IK/planning failure, not proof the scene is unsolvable,
+                    # so those episodes are still learnable and still carry
+                    # reward signal. Filtering them would throw away ~72% of
+                    # rollout time, which at ~3.5-4s/env-step is the dominant
+                    # cost of a run.
 
 wandb:
   project: dsrl-scan-object
@@ -64,7 +99,33 @@ train:
   num_layers: 3
   discount: 0.99
   ent_coef: -1
-  target_ent: 0.0
+  target_ent: 0.0   # ABSOLUTE nats, summed over ALL 256 action dims -- so it
+                    # is parameterization-dependent and cannot be copied
+                    # between setups. 0.0 was inherited verbatim from
+                    # DSRL-reference's 28-dim robomimic config, where it is
+                    # reachable; here a healthy squashed actor sits at
+                    # log_prob ~= -174.5, so the tuner's balance term
+                    # (log_prob + target_ent) is a permanent -174.5 and
+                    # ent_coef collapses to ~0.01 (diagnosed 2026-10-16/18).
+                    # Correct values, MEASURED not guessed:
+                    #   squash_actions=True   -> 174.5
+                    #   squash_actions=False  -> 363.2  (= 256 * 0.5*log(2*pi*e),
+                    #                            the entropy of N(0,1)^256)
+                    # SB3's own "auto" (-256) is worse than either.
+  squash_actions: True   # False replaces SquashedDiagGaussianDistribution with
+                    # the unbounded DiagGaussianDistribution. The action here
+                    # IS the initial DDIM noise x_T, and tanh makes
+                    # |a| > action_magnitude unreachable, so a squashed actor
+                    # structurally cannot emit the 13.3% of N(0,1) mass beyond
+                    # +-1.5 -- measured, with std matching (0.98 vs 1.00) but
+                    # kurtosis 1.61 vs 3.01 and P(|a|>1.5) exactly 0 vs 0.133
+                    # (tests/compare_noise_distribution.py). Set
+                    # action_magnitude=1.0 alongside it so predict()'s
+                    # unscale_action is the identity, and target_ent=363.2.
+  standard_gauss_init: False   # zero-init mu and log_std heads, so an
+                    # untrained actor is EXACTLY N(0,1). Only meaningful
+                    # together with squash_actions=False; with squashing it
+                    # just means tanh(0)=0 everywhere.
   init_rollout_steps: 1500   # matches DSRL-reference's robomimic config
                           # (1501); pre-fills the replay buffer with
                           # UNSTEERED diffusion-policy transitions before

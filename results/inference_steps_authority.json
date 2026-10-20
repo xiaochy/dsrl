@@ -1,0 +1,53 @@
+{
+  "n_draws": 32,
+  "n_states": 6,
+  "seed": 7000,
+  "deployed_steps": 10,
+  "rows": [
+    {
+      "num_inference_steps": 10,
+      "within_noise_A": 0.00046554161235690117,
+      "across_state_A": 0.1350642740726471,
+      "authority_A": 0.003446815344422612,
+      "within_noise_B": 0.00046020184527151287,
+      "across_state_B": 0.13504347205162048,
+      "authority_B": 0.0034078051925057165
+    },
+    {
+      "num_inference_steps": 5,
+      "within_noise_A": 0.00035454987664707005,
+      "across_state_A": 0.13506244122982025,
+      "authority_A": 0.002625081209984745,
+      "within_noise_B": 0.0003729004820343107,
+      "across_state_B": 0.13504132628440857,
+      "authority_B": 0.0027613804773284766
+    },
+    {
+      "num_inference_steps": 3,
+      "within_noise_A": 0.0003402979054953903,
+      "across_state_A": 0.13498541712760925,
+      "authority_A": 0.00252099754726607,
+      "within_noise_B": 0.0003186895919498056,
+      "across_state_B": 0.13499513268470764,
+      "authority_B": 0.0023607487589506777
+    },
+    {
+      "num_inference_steps": 2,
+      "within_noise_A": 0.00027270163991488516,
+      "across_state_A": 0.13487185537815094,
+      "authority_A": 0.0020219314040745557,
+      "within_noise_B": 0.0002777345653157681,
+      "across_state_B": 0.1348680853843689,
+      "authority_B": 0.0020593053169267973
+    },
+    {
+      "num_inference_steps": 1,
+      "within_noise_A": 0.006034509744495153,
+      "across_state_A": 0.13045868277549744,
+      "authority_A": 0.046256098989438416,
+      "within_noise_B": 0.005844080355018377,
+      "across_state_B": 0.13047723472118378,
+      "authority_B": 0.044790038411731875
+    }
+  ]
+}

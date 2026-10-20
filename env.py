@@ -79,6 +79,47 @@ import importlib  # noqa: E402
 from envs import CONFIGS_PATH  # noqa: E402
 
 
+def _enable_sapien_determinism():
+    """Make `sapien.SceneConfig()` return a config with PhysX's enhanced
+    determinism on, so RoboTwin's own `sapien.SceneConfig()` call at
+    envs/_base_task.py:221 picks it up without that file being touched.
+    Idempotent."""
+    import sapien
+    import sapien.physx as physx
+    if getattr(sapien, "_dsrl_determinism_patched", False):
+        return
+
+    # The GLOBAL config is the one SAPIEN 3 honours. Setting the field only on
+    # the per-scene object handed to create_scene() had NO effect: measured
+    # 2026-10-19, the flag printed as applied but divergence still began at
+    # step 1 and episode length still differed (13 vs 10 chunks). sapien 3.0.0b1
+    # exposes physx.get_scene_config() / set_scene_config(), and a round-trip
+    # through those does stick.
+    scene_cfg = physx.get_scene_config()
+    scene_cfg.enable_enhanced_determinism = True
+    physx.set_scene_config(scene_cfg)
+    applied = physx.get_scene_config().enable_enhanced_determinism
+    if not applied:
+        raise RuntimeError(
+            "physx.set_scene_config did not take: enable_enhanced_determinism "
+            "is still False. Do not treat this run as deterministic.")
+
+    # Belt and braces: RoboTwin also passes its own `sapien.SceneConfig()` to
+    # create_scene (envs/_base_task.py:221), so set the field there too.
+    original = sapien.SceneConfig
+
+    def factory(*args, **kwargs):
+        cfg = original(*args, **kwargs)
+        cfg.enable_enhanced_determinism = True
+        return cfg
+
+    sapien.SceneConfig = factory
+    sapien._dsrl_determinism_patched = True
+    print("[env] PhysX enable_enhanced_determinism=True, verified via "
+          "physx.get_scene_config() (physics differs from the default "
+          "config -- see the docstring)")
+
+
 def _class_decorator(task_name):
     envs_module = importlib.import_module(f"envs.{task_name}")
     env_class = getattr(envs_module, task_name)
@@ -140,7 +181,8 @@ class DSRLScanObjectEnv:
                 expert_check: bool = False, expert_cache_path: str = "",
                 max_seed_attempts: int = 200, num_inference_steps: int = 0,
                 video_dir: str = "", fixed_track_noise: bool = True,
-                video_substep_freq: int = 0, video_fps: int = 10):
+                video_substep_freq: int = 0, video_fps: int = 10,
+                deterministic_physics: bool = False):
         """
         Args:
             reward_source: "track" (default) -- dynamics model's predicted
@@ -185,6 +227,38 @@ class DSRLScanObjectEnv:
                 also a weaker policy, so never set this without re-measuring
                 success rate at the same value
                 (tests/eval_unsteered_baseline.py --num_inference_steps).
+            deterministic_physics: set PhysX's enable_enhanced_determinism on
+                the SAPIEN scene. Off by default, and that default matters --
+                see the warning below.
+
+                WHY IT EXISTS: measured 2026-10-19 with
+                tests/diagnose_nondeterminism.py, replaying one scene twice in
+                ONE process with an IDENTICAL action-noise stream and
+                fixed_track_noise=True: step 0's observation AND action chunk
+                are bit-identical, and divergence starts at step 1, i.e. right
+                after the first action chunk is executed. So reset(seed=) does
+                restore the scene and the policy is deterministic given its
+                inputs -- the nondeterminism is in SAPIEN's physics execution,
+                and scan_object's contact dynamics amplify it enough to change
+                episode length (13 vs 10 chunks) and flip success outright
+                (False vs True at num_inference_steps=1). That is what
+                invalidated the outcome-sensitivity flip rates: the
+                --fixed_noise control alone flips 0.10 of scenes at 10 steps
+                and 0.33 at 1.
+
+                WARNING: turning this on CHANGES THE PHYSICS, so success rates
+                measured under it are not comparable to the 75.33% baseline or
+                to any earlier number here, all of which ran without it. Use
+                it for replay/ablation experiments where reproducibility is
+                the point, and re-measure the whole comparison under it rather
+                than mixing. PhysX's enhanced determinism also costs
+                performance and only promises determinism for the same scene
+                on the same hardware, not across machines or actor counts.
+
+                RoboTwin builds its scene at envs/_base_task.py:221 as a bare
+                `sapien.SceneConfig()`, so this is applied by wrapping that
+                factory rather than editing _base_task, which every other eval
+                path and the data collector share.
             fixed_track_noise: re-seed the base policy's track generator from
                 the episode seed at every reset(), so a given scene always
                 sees the SAME track-noise stream and the only thing varying
@@ -238,6 +312,9 @@ class DSRLScanObjectEnv:
         self.device = device
         self.reward_source = reward_source
         self.args = _build_task_args(task_name, task_config)
+        self.deterministic_physics = deterministic_physics
+        if deterministic_physics:
+            _enable_sapien_determinism()
         self.TASK_ENV = _class_decorator(task_name)
         self._step_lim_override = step_lim  # None -> use the task config's own step_lim
         self._now_seed = 100000 * (1 + seed)
@@ -292,6 +369,13 @@ class DSRLScanObjectEnv:
             os.path.dirname(os.path.abspath(__file__)), "results", "expert_check_cache.json")
         self._expert_cache = self._load_expert_cache() if expert_check else {}
         self.skipped_seeds = []
+
+        # Recorded and printed on every run: it changes how every measurement
+        # here must be read (see GAPBasePolicyWrapper.prediction_type).
+        self.prediction_type = self.base_policy.prediction_type
+        print(f"[env] base policy prediction_type={self.prediction_type!r} "
+              f"(track={self.base_policy.track_prediction_type!r}), "
+              f"num_inference_steps={self.num_inference_steps}")
 
         self.scorer = None
         self.action_svm = None

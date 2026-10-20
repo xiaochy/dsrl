@@ -491,6 +491,46 @@ GAP 自己的 eval 从无此问题：`deploy_policy.py:507/:561` 显式传 `self
 
 ## 8. 剩余选项
 
+### 8.0 `prediction_type='epsilon'` 的支持现状（2026-10-19 已接好）
+
+**采样路径本来就支持**：diffusers 的 `DDIMScheduler.step` 内部按
+`config.prediction_type` 分支（epsilon / sample / v_prediction 都处理），所以
+`conditional_sample_from_noise` 跑 epsilon checkpoint **不需要改一行**。
+
+缺的不是采样，而是适配层不知道自己在跟哪种参数化对话。已补上：
+
+| 改动 | 作用 |
+|---|---|
+| `GAPBasePolicyWrapper.prediction_type` / `.track_prediction_type` | 从 `noise_scheduler.config` 读出并暴露 |
+| `env.py` 启动时打印 | 每个 run 都记录基座参数化与去噪步数 |
+| `train_dsrl_scan_object.py` 的 `_validate_noise_parameterization()` | 按 checkpoint 的 `prediction_type` 校验噪声设置 |
+
+校验规则：
+
+- **epsilon + `squash_actions=True` → 直接报错**。这是唯一一个会**恰好浪费掉 epsilon 所恢复性质**的组合：tanh 把噪声硬界在 ±`action_magnitude`，于是发不出 N(0,1) 中超过 ±1.5 的那 13.3%（实测 `P(|a|>1.5)` 精确为 0 vs 0.133，kurtosis 1.61 vs 3.01）。此前它能静默跑通。
+- **epsilon + `standard_gauss_init=False` → 报错**：未训练 actor 就不是精确 N(0,1)，预填和 step-0 基线也就不是它们被文档声称的「未引导参考」。
+- **epsilon + `target_ent` 偏离 363.2 → 警告**。363.2 = `256 × 0.5·log(2πe)`，即 N(0,1)^256 的熵。它在 epsilon 下是**有原则的**目标：把**每状态**的离散度按在训练分布的水平，而**均值**仍可随状态变化 —— 而那个均值就是引导本身。这与 squashed 设定下 0.0 / 174.5 两边都错的情形不同。
+- **sample → 打印 authority 警示**（0.0035 @10 步、0.0463 @1 步），提醒不要把该 run 的结果当作 RL 结论读。
+
+`DSRL_ALLOW_PARAM_MISMATCH=1` 可把报错降为警告。
+
+**GAP 侧要训一个 epsilon checkpoint**，改两处（两条流必须一致，`gap.py:2276` 对 `v_prediction` + `joint_diffusion` 会直接报错）：
+
+```yaml
+# gap_policy/config/GAP.yaml:82 与 :101
+prediction_type: epsilon
+```
+
+或命令行覆盖：
+
+```
+policy.noise_scheduler.prediction_type=epsilon policy.track_noise_scheduler.prediction_type=epsilon
+```
+
+`clip_sample` 两处都不用动：action 的 normalizer 是 `limits` 模式 → [−1,1]，所以 range 1.0 正好等于数据范围；track 的 `clip_sample_range=10.0` 裁的是同一个归一化 track 空间里的量，epsilon 下裁的是导出的 x̂₀，理由不变。
+
+---
+
 1. **用 `prediction_type='epsilon'` 重训 GAP。** 在全步数下恢复 DSRL 前提：x_T → x_0 变回近似可逆的学习流，而非朝条件均值的收缩。训练代码**已支持**（`gap.py:2227` action target 与 `:2276` joint_diffusion track target 都有 epsilon 分支，只有 `v_prediction` 对 joint_diffusion 不支持），所以是配置改动 + 一次完整重训，可能同时改善 GAP 本身。
 2. **引导别的东西**：冻结策略输出上的残差动作 RL，或直接 RL 微调权重。放弃 DSRL「不碰权重」的卖点，但不受噪声不敏感性限制。
 3. **转回策略本身**：条件化基线 0.72-0.75，无条件 0.57；提升策略比引导它更有价值。

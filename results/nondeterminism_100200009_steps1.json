@@ -1,0 +1,14 @@
+{
+  "scene": 100200009,
+  "num_inference_steps": 1,
+  "outcomes": [
+    false,
+    true
+  ],
+  "n_steps": [
+    32,
+    12
+  ],
+  "first_obs_divergence": 1,
+  "first_action_divergence": 1
+}

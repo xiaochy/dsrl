@@ -63,6 +63,9 @@ class DSRLScanObjectGymEnv(gymnasium.Env):
             num_inference_steps=num_inference_steps,
             fixed_track_noise=fixed_track_noise,
         )
+        # Surfaced so the training entry point can validate the noise
+        # parameterization against it without reaching through two wrappers.
+        self.prediction_type = self.env.prediction_type
         horizon, action_dim = self.env.base_policy.horizon, self.env.base_policy.action_dim
         self.action_space = spaces.Box(
             low=-action_magnitude * np.ones(horizon * action_dim, dtype=np.float32),

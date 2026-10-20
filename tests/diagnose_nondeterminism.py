@@ -57,6 +57,11 @@ def main():
     ap.add_argument("--step_lim", type=int, default=500)
     ap.add_argument("--num_inference_steps", type=int, default=0)
     ap.add_argument("--device", default="cuda")
+    ap.add_argument("--deterministic_physics", action="store_true",
+                    help="enable PhysX enable_enhanced_determinism; this is "
+                         "the candidate fix for the divergence this script "
+                         "measures (see env.py's docstring for the caveat "
+                         "that it changes the physics)")
     ap.add_argument("--out", default="")
     args = ap.parse_args()
 
@@ -65,6 +70,7 @@ def main():
         gap_ckpt=args.gap_ckpt, dynamics_ckpt="", device=args.device,
         seed=args.env_seed, step_lim=args.step_lim, reward_source="none",
         num_inference_steps=args.num_inference_steps,
+        deterministic_physics=args.deterministic_physics,
     )
     noise_dim = env.base_policy.horizon * env.base_policy.action_dim
 
@@ -130,7 +136,8 @@ def main():
 
     out = args.out or os.path.join(base_path, "results",
                                    f"nondeterminism_{args.scene}_steps"
-                                   f"{args.num_inference_steps or 'default'}.json")
+                                   f"{args.num_inference_steps or 'default'}"
+                                   f"{'_detphys' if args.deterministic_physics else ''}.json")
     with open(out, "w") as f:
         json.dump({"scene": args.scene,
                    "num_inference_steps": env.num_inference_steps,

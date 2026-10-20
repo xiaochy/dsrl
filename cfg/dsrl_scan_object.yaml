@@ -88,6 +88,37 @@ wandb:
   run: ${now:%H-%M-%S}_${name}
   group: scan_object
 
+# ---------------------------------------------------------------------------
+# NOISE PARAMETERIZATION MUST MATCH THE BASE POLICY'S prediction_type
+#
+# The sampling path itself is agnostic -- diffusers' DDIMScheduler.step
+# branches on config.prediction_type internally, so GAP's
+# conditional_sample_from_noise runs either parameterization unchanged. What
+# is NOT agnostic is which distribution the SAC noise action has to come
+# from. train_dsrl_scan_object.py reads the loaded checkpoint's
+# prediction_type and validates the settings below against it
+# (DSRL_ALLOW_PARAM_MISMATCH=1 overrides).
+#
+#   prediction_type='epsilon'   <- DSRL's premise holds; what the paper's own
+#                                  base policy uses
+#       squash_actions:      False
+#       standard_gauss_init: True
+#       action_magnitude:    1.0
+#       target_ent:          363.2     # = 256 * 0.5*log(2*pi*e), i.e. the
+#                                  entropy of N(0,1)^256. Principled here: it
+#                                  holds the PER-STATE spread at the training
+#                                  distribution's, while the MEAN stays free
+#                                  to vary with the state -- and that mean is
+#                                  the steering.
+#
+#   prediction_type='sample'    <- this project's checkpoint (GAP.yaml:82,
+#                                  deliberate: "predict clean sample (not
+#                                  noise!)")
+#       Every DDIM step contracts toward the conditional mean, so x_T is
+#       washed out: measured authority 0.0035 at 10 steps (~1/370) and 0.0463
+#       at 1. No setting below fixes that -- see
+#       docs/dsrl-experiments-and-adaptation.md.
+# ---------------------------------------------------------------------------
 train:
   tau: 0.005
   actor_lr: 3e-4

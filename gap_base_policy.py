@@ -81,6 +81,32 @@ class GAPBasePolicyWrapper:
         self._generator = torch.Generator(device=device)
         self._generator.manual_seed(track_seed)
 
+        # Which diffusion parameterization this frozen base policy was trained
+        # with. The SAMPLING path does not need to know -- diffusers'
+        # DDIMScheduler.step branches on config.prediction_type itself, so
+        # conditional_sample_from_noise runs either one unchanged. But the
+        # CALLER does need to know, because it decides what distribution the
+        # noise action must come from and how any measurement of it reads:
+        #
+        #   'epsilon' -- x_hat_0 = (x_t - sqrt(1-abar_t) * eps_hat)/sqrt(abar_t),
+        #       so x_t enters with an explicit 1/sqrt(abar_t) coefficient and
+        #       x_T's influence is structural. DDIM at eta=0 is then an
+        #       approximately invertible flow and x_T indexes the modes. This
+        #       is DSRL's premise, and what the paper's own base policy uses.
+        #       x_T must be ~N(0,1): use squash_actions=False,
+        #       action_magnitude=1.0, standard_gauss_init=True.
+        #
+        #   'sample' -- the network emits x_hat_0 directly and its MSE target
+        #       at high t is E[x_0 | x_T, c] ~= E[x_0 | c], so the objective
+        #       actively drives it to ignore x_T. Measured on this project's
+        #       checkpoint: noise authority 0.0035 at the deployed 10 steps,
+        #       i.e. ~1/370 (tests/compare_policy_paths.py).
+        self.prediction_type = gap_policy.noise_scheduler.config.prediction_type
+        self.track_prediction_type = (
+            gap_policy.track_noise_scheduler.config.prediction_type
+            if getattr(gap_policy, "track_noise_scheduler", None) is not None
+            else None)
+
     def reseed_track(self, seed: int):
         """Re-seed the track generator, e.g. at the start of each episode so
         repeated runs of one scene see an IDENTICAL track-noise stream and the

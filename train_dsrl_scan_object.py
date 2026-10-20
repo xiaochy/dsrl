@@ -79,6 +79,65 @@ OmegaConf.register_new_resolver("round_up", math.ceil)
 OmegaConf.register_new_resolver("round_down", math.floor)
 
 
+def validate_noise_parameterization(cfg, prediction_type: str):
+    """The base policy's prediction_type decides what distribution the SAC
+    noise action has to come from. Nothing used to check this, so the one
+    combination that silently throws away the whole point of 'epsilon'
+    (an epsilon base policy driven by a tanh-squashed actor, which
+    structurally cannot emit the N(0,1) tail) ran without a word.
+
+    Set DSRL_ALLOW_PARAM_MISMATCH=1 to downgrade the error to a warning.
+    """
+    allow = os.environ.get("DSRL_ALLOW_PARAM_MISMATCH") == "1"
+    n_dims = cfg.act_steps * cfg.action_dim
+    gauss_ent = n_dims * 0.5 * math.log(2 * math.pi * math.e)  # N(0,1)^n_dims
+
+    if prediction_type == "epsilon":
+        msg = None
+        if cfg.train.squash_actions:
+            msg = (
+                f"base policy is prediction_type='epsilon', which is the one "
+                f"case where x_T genuinely determines the action, but "
+                f"train.squash_actions=True hard-bounds the noise at "
+                f"+-{cfg.train.action_magnitude} and so cannot emit the "
+                f"13.3% of N(0,1) mass beyond +-1.5 (measured: "
+                f"P(|a|>1.5) exactly 0 vs 0.133, kurtosis 1.61 vs 3.01 -- "
+                f"tests/compare_noise_distribution.py). That discards the "
+                f"property 'epsilon' restores. Use squash_actions=False, "
+                f"action_magnitude=1.0, standard_gauss_init=True, "
+                f"target_ent={gauss_ent:.1f}.")
+        elif not cfg.train.standard_gauss_init:
+            msg = ("prediction_type='epsilon' with squash_actions=False but "
+                   "standard_gauss_init=False: the untrained actor is then "
+                   "not exactly N(0,1), so the prefill and the step-0 "
+                   "baseline are not the unsteered reference they are "
+                   "documented as.")
+        if msg:
+            if allow:
+                print(f"[warn] {msg}")
+            else:
+                raise ValueError(msg + "  (DSRL_ALLOW_PARAM_MISMATCH=1 to override)")
+        if abs(cfg.train.target_ent - gauss_ent) > 1.0:
+            print(f"[warn] target_ent={cfg.train.target_ent} is not the "
+                  f"entropy of N(0,1)^{n_dims} = {gauss_ent:.1f}. Under "
+                  f"'epsilon' that target is the principled one: it holds "
+                  f"the PER-STATE spread at the training distribution's "
+                  f"while leaving the MEAN free to vary with the state, "
+                  f"which is where the steering happens.")
+    elif prediction_type == "sample":
+        print("[note] base policy is prediction_type='sample'. Each DDIM "
+              "step contracts toward the conditional mean, so x_T is "
+              "washed out: measured noise authority 0.0035 at "
+              "num_inference_steps=10 (~1/370) and 0.0463 at 1 "
+              "(tests/sweep_inference_steps_authority.py, 2026-10-19). "
+              "DSRL has very little to steer here -- see "
+              "docs/dsrl-experiments-and-adaptation.md before reading any "
+              "result from this run as an RL outcome.")
+    else:
+        print(f"[warn] unrecognized prediction_type={prediction_type!r}; "
+              f"no parameterization guidance available")
+
+
 class _WandbOutputFormat(KVWriter):
     """Forwards SB3's internal train/* metrics (ent_coef, ent_coef_loss,
     actor/critic losses, n_updates) to wandb -- without this they reach
@@ -324,6 +383,7 @@ def main(cfg: OmegaConf):
     assert cfg.env.n_envs == 1, "only single-env is wired up -- SAPIEN + our own scorer " \
         "subprocess per env makes SubprocVecEnv parallelism a separate piece of work, not done yet"
     env = DummyVecEnv([make_env])
+    validate_noise_parameterization(cfg, env.envs[0].unwrapped.prediction_type)
 
     def make_eval_env():
         # +1000 keeps eval episodes on a seed range the training rollout's

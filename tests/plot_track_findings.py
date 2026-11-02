@@ -203,26 +203,51 @@ def panel_gradient(ax, path) -> None:
 
 
 def panel_firstorder(ax, sens, path) -> None:
-    """Gradient (local) cannot predict the GT->zero swap (finite, non-linear)."""
+    """How well the local gradient predicts the finite GT->zero swap.
+
+    Sign convention, which an earlier version of this panel got wrong:
+    diagnose_track_pathway.py:126 defines
+
+        dlogit_firstorder_zero_swap = -(g . x) = g . (0 - x)
+
+    which is the first-order estimate of logit(zero) - logit(GT), i.e. of
+    MINUS the quantity on the x axis. So exact linearity puts the points on
+    the ANTI-diagonal y = -x and would give corr = -1, not +1. The panel used
+    to draw y = +x as "where linearity would put it" and read the resulting
+    corr = -0.299 as a failure; it is in fact the right sign, and the honest
+    summary is that first order gets the direction right on 86% of chunks and
+    the magnitude to within a factor of ~1.5, while badly missing the slope.
+    """
     k = {(x["episode"], x["chunk"]): x for x in path}
     a = np.array([[r["logit_gt"] - r["logit_zero"],
                    k[(r["episode"], r["chunk"])]["dlogit_firstorder_zero_swap"]]
                   for r in sens["rows"] if (r["episode"], r["chunk"]) in k])
-    corr = float(np.corrcoef(a[:, 0], a[:, 1])[0, 1])
+    x, y = a[:, 0], a[:, 1]
+    corr = float(np.corrcoef(x, y)[0, 1])
+    agree = float(np.mean(np.sign(x) == -np.sign(y)))
+    big = np.abs(x) > 1e-2
+    ratio = float(np.median(np.abs(y[big]) / np.abs(x[big])))
     lim = 12.0
-    ax.plot([-lim, lim], [-lim, lim], color=AXIS, lw=1.0, ls="--", zorder=2)
+    ax.plot([-lim, lim], [lim, -lim], color=AXIS, lw=1.0, ls="--", zorder=2)
     ax.axhline(0, color=AXIS, lw=0.8, zorder=2)
     ax.axvline(0, color=AXIS, lw=0.8, zorder=2)
-    ax.scatter(a[:, 0], a[:, 1], s=14, color=ORANGE, alpha=0.6, linewidths=0, zorder=4)
+    ax.scatter(x, y, s=14, color=ORANGE, alpha=0.6, linewidths=0, zorder=4)
     ax.set_xscale("symlog", linthresh=1e-3)
     ax.set_yscale("symlog", linthresh=1e-3)
     ax.set_xlim(-lim, lim)
     ax.set_ylim(-lim, lim)
     ax.set_xlabel("measured  logit(GT) - logit(zero)")
     ax.set_ylabel("first-order prediction  g . (0 - x)")
-    ax.text(0.03, 0.96, f"corr = {corr:+.3f}\ndashed = where linearity would put it",
-            transform=ax.transAxes, fontsize=7, color=INK, va="top")
-    ax.set_title("(e) The gradient cannot predict this swap: it is no small perturbation", loc="left")
+    # upper right: the only quadrant the anti-diagonal and the data leave empty
+    ax.text(0.97, 0.96,
+            f"dashed y = -x is exact linearity\n"
+            f"(y estimates MINUS the x quantity)\n"
+            f"corr = {corr:+.3f}   r$^2$ = {corr ** 2:.2f}\n"
+            f"sign agrees on {agree:.0%} of chunks\n"
+            f"median |y|/|x| = {ratio:.2f} for |x| > 0.01",
+            transform=ax.transAxes, fontsize=6.5, color=INK,
+            va="top", ha="right")
+    ax.set_title("(e) First order: right sign on 86%, wrong slope", loc="left")
     ax.grid(zorder=0)
 
 

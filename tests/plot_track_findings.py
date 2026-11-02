@@ -279,7 +279,11 @@ def figure1(sens, path, out: Path) -> None:
 def panel_coverage(ax, rec, px, title: str) -> None:
     rgb = np.asarray(rec["multiview"]["head"]["rgb"])
     v = np.asarray(rec["valid_mask"], bool)
-    ax.imshow(rgb[..., ::-1] if rgb.shape[-1] == 3 else rgb, interpolation="nearest")
+    # True RGB already: RoboTwin's Camera.get_rgb returns SAPIEN's "Color"
+    # rgba[:, :, :3] with no conversion, and _collect_multiview_obs stores it
+    # unchanged. An earlier [..., ::-1] here displayed the panels red/blue
+    # swapped. Verified 2026-11-01 against RoboTwin's own episode video.
+    ax.imshow(rgb, interpolation="nearest")
     ax.scatter(px[~v, 0], px[~v, 1], s=3.5, color=CONST, alpha=0.75, linewidths=0, zorder=3)
     ax.scatter(px[v, 0], px[v, 1], s=13, color=ORANGE, linewidths=0.4,
                edgecolors="#ffffff", zorder=4)

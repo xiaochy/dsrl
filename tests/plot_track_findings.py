@@ -373,7 +373,7 @@ def panel_gap_split(ax, chain: Path) -> None:
             w = 1.0 / (1.0 + np.exp(-k * (d - tau)))
             W += [w[~v].sum(), w[v & (d <= tau)].sum(), w[v & (d > tau)].sum()]
     W = W / W.sum() * 100
-    names = ["invalid: robot + background", "valid, static", "valid, moving"]
+    names = ["invalid: arm proper + background", "valid, static", "valid, moving"]
     drop = [-0.37, -0.60, -0.37]
     left = 0.0
     for (n, w, c, dy) in zip(names, W, SEQ, drop):
@@ -386,7 +386,7 @@ def panel_gap_split(ax, chain: Path) -> None:
         left += w
     ax.set_xlim(0, 100); ax.set_ylim(-0.95, 0.4)
     ax.set_yticks([]); ax.set_xlabel("share of GAP's track-loss weight mass (%)")
-    ax.set_title("(f) 22% of the track supervision teaches \"robot and background do not move\"",
+    ax.set_title("(f) 22% of the track supervision teaches \"arm and background do not move\"",
                  loc="left")
     ax.spines["left"].set_visible(False)
 
@@ -414,13 +414,15 @@ def figure2(chain: Path, out: Path) -> None:
     fig.suptitle("What `valid` actually covers, and how GAP treats the same mask",
                  fontsize=12, fontweight="bold", color=INK, x=0.05, ha="left", y=0.962)
     fig.text(0.05, 0.925,
-             "valid_point_mask = depth_valid & is_object (SAPIEN segmentation). Every point on "
-             "the robot itself and all of the static background is invalid - yet whether the "
-             "episode succeeds depends largely on how the arms move.",
+             "valid_point_mask = depth_valid & is_object (SAPIEN segmentation), where is_object "
+             "covers the task objects AND the gripper finger links. Only the arm proper and the "
+             "static background are excluded - the arm deliberately, since its pose is already "
+             "known exactly from robot_state.",
              fontsize=8, color=INK2, ha="left")
-    fig.legend(handles=[Patch(facecolor=ORANGE, label="valid: has a GT track (points on objects)"),
+    fig.legend(handles=[Patch(facecolor=ORANGE,
+                              label="valid: has a GT track (task objects + gripper links)"),
                         Patch(facecolor=CONST,
-                              label="invalid: no GT track (robot / background / invalid depth)")],
+                              label="invalid: no GT track (arm proper / background / invalid depth)")],
                loc="upper right", bbox_to_anchor=(0.985, 0.955), ncol=2)
     fig.savefig(out, bbox_inches="tight")
     plt.close(fig)

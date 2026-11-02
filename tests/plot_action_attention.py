@@ -63,7 +63,7 @@ def panel_mass(ax, act, nl):
     ax.set_xticks(np.arange(nl), [f"L{i}" for i in range(nl)])
     ax.set_ylim(0, 1)
     ax.set_ylabel("CLS self-attention mass (sums to 1 per layer)")
-    ax.set_title("(a) action-SVM: no constant block, so DINO holds ~99%", loc="left")
+    ax.set_title("(a) TOTAL mass: DINO holds ~99% \u2014 it is 391 of the 396 tokens", loc="left")
     ax.grid(axis="y", zorder=0)
     ax.legend(loc="lower left", fontsize=6.5, ncol=1, framealpha=0.9)
 
@@ -84,7 +84,7 @@ def panel_pertoken(ax, act, nl):
     ax.set_xticks(range(nl), [f"L{i}" for i in range(nl)])
     ax.set_yscale("log")
     ax.set_ylabel(f"per-token attention / uniform share (1/{ACT_SEQ})")
-    ax.set_title("(b) Read hard at L0 (12x), then exactly its fair share", loc="left")
+    ax.set_title("(b) Same numbers PER TOKEN: 12x at L0, fair share after", loc="left")
     ax.grid(zorder=0)
     ax.legend(loc="upper right", fontsize=7)
 
@@ -122,18 +122,22 @@ def main():
     trk = json.loads((a.sens / "track_sens" / "track_pathway.json").read_text())
     nl = act[0]["n_layers"]
 
-    fig, axes = plt.subplots(1, 3, figsize=(15.2, 4.3))
+    fig, axes = plt.subplots(1, 3, figsize=(15.2, 5.4))
     panel_mass(axes[0], act, nl)
     panel_pertoken(axes[1], act, nl)
     panel_compare(axes[2], act, trk, nl)
     fig.suptitle("Where CLS looks in the action-SVM, and what that says about the track-SVM's constant block",
-                 x=0.013, ha="left", fontsize=13, fontweight="bold")
-    fig.text(0.013, 0.915,
+                 x=0.013, y=0.985, ha="left", fontsize=13, fontweight="bold")
+    fig.text(0.013, 0.930,
              f"Same {len(act)} decision chunks as fig1. action-SVM sequence = "
-             f"[CLS | state x2 | action x2 | head DINO x391] = {ACT_SEQ} tokens, no invalid mask and no constant "
-             f"block (model.py:261 sets act_ok = ones). Per-token = mass / tokens in the segment.",
-             fontsize=8, color=INK2)
-    fig.tight_layout(rect=(0, 0, 1, 0.90))
+             f"[CLS | state x2 | action x2 | head DINO x391] = {ACT_SEQ} tokens, with no invalid mask\n"
+             f"and no constant block (model.py:261 sets act_ok = ones). (b) and (c) are (a) divided by the "
+             f"tokens in each group, against the uniform share 1/{ACT_SEQ}:\n"
+             "(a) is how much of the read-out a group supplies, (b) whether one token is treated as above or "
+             "below average \u2014 which is where the L1+ story is,\nsince (a)'s orange band is too thin to read "
+             "there (2 tokens can hold at most 2/396 = 0.5%).",
+             fontsize=8, color=INK2, va="top", linespacing=1.5)
+    fig.tight_layout(rect=(0, 0, 1, 0.805))
     out = a.out / "fig3_action_attention.png"
     fig.savefig(out, bbox_inches="tight")
     print(f"wrote {out}")
